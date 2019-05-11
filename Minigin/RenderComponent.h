@@ -4,7 +4,7 @@ namespace dae
 {
 	class GameObject;
 
-	class RenderComponent : public BaseComponent
+	class RenderComponent final : public BaseComponent
 	{
 	public:
 		RenderComponent(const std::shared_ptr<GameObject>& owner);
