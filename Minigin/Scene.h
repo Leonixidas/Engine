@@ -31,9 +31,9 @@ namespace dae
 		// but I was bothered by the creation of them. It's way easier and has a better overview by just making a derived class from this one
 		// instead of calling the scene manager and creating one and then using the return value to add objects etc. (I like structure)
 		// that's why I used this set up for the scenes
-		virtual void Update(float) = 0; 
-		virtual void Render() const = 0;
-		virtual void Initialize() = 0;
+		virtual void Update(float) {};
+		virtual void Render() const {};
+		virtual void Initialize() {};
 
 		void AddGameObject(const std::shared_ptr<GameObject>& object);
 		explicit Scene(const std::string& name);

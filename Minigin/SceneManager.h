@@ -11,7 +11,7 @@ namespace dae
 		void Render();
 		void SetActiveScene(const unsigned int id);
 		Scene& GetActiveScene();
-		void AddScene(const Scene& scene);
+		void AddScene(const std::shared_ptr<Scene>& scene);
 
 	private:
 		std::vector<std::shared_ptr<Scene>> m_Scenes;

@@ -26,6 +26,7 @@ bool dae::InputManager::ProcessInput()
 
 bool dae::InputManager::IsPressed(ControllerButton button) const
 {
+	
 	switch (button)
 	{
 	case ControllerButton::ButtonA:

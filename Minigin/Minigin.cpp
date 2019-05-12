@@ -41,7 +41,7 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	/*auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
 	auto go = std::make_shared<GameObject>();
 	go->AddComponent(std::move(new TextureComponent(go)));
@@ -52,7 +52,7 @@ void dae::Minigin::LoadGame() const
 	go->AddComponent(std::move(new TextureComponent(go)));
 	go->GetComponent<TextureComponent>().SetTexture(std::move("logo.png"));
 	go->GetTransform().SetPosition(216, 180, 0);
-	scene.Add(go);
+	scene.Add(go);*/
 }
 
 void dae::Minigin::Cleanup()
