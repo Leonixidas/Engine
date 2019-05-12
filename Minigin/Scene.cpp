@@ -21,17 +21,9 @@ dae::Scene::~Scene()
 	}
 }
 
-void dae::Scene::Add(const std::shared_ptr<GameObject>& object)
+void dae::Scene::AddGameObject(const std::shared_ptr<GameObject>& object)
 {
 	m_Objects.push_back(object);
-}
-
-void dae::Scene::Update(float elapsedSec)
-{
-	for(const auto& gameObject : m_Objects)
-	{
-		gameObject->Update(elapsedSec);
-	}
 }
 
 void dae::Scene::RootUpdate(float elapsedSec)
@@ -44,9 +36,15 @@ void dae::Scene::RootUpdate(float elapsedSec)
 	}
 }
 
-void dae::Scene::Render() const
+void dae::Scene::RootRender() const
 {
 	m_SceneRenderer->Render();
+	Render();
+}
+
+void dae::Scene::RootInitialize()
+{
+	Initialize();
 }
 
 dae::SceneRenderer & dae::Scene::GetSceneRenderer()
