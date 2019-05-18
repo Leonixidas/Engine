@@ -1,5 +1,5 @@
 #include "MiniginPCH.h"
-#include "Minigin.h"
+#include "MiniginGame.h"
 #include <chrono>
 #include <thread>
 #include "InputManager.h"
@@ -13,57 +13,46 @@
 #include "Transform.h"
 
 
-void dae::Minigin::Initialize()
+void dae::MiniginGame::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
 	{
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
-	window = SDL_CreateWindow(
-		"Programming 4 assignment",
+	m_Window = SDL_CreateWindow(
+		m_Name.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
-		480,
+		int(m_WindowWidth),
+		int(m_WindowHeight),
 		SDL_WINDOW_OPENGL
 	);
-	if (window == nullptr) 
+	if (m_Window == nullptr) 
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
 
-	Renderer::GetInstance().Init(window);
+	Renderer::GetInstance().Init(m_Window);
 }
 
 /**
  * Code constructing the scene world starts here
  */
-void dae::Minigin::LoadGame() const
+void dae::MiniginGame::LoadGame() const
 {
-	/*auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-
-	auto go = std::make_shared<GameObject>();
-	go->AddComponent(std::move(new TextureComponent(go)));
-	go->GetComponent<TextureComponent>().SetTexture(std::move("background.jpg"));
-	scene.Add(go);
-
-	go = std::make_shared<GameObject>();
-	go->AddComponent(std::move(new TextureComponent(go)));
-	go->GetComponent<TextureComponent>().SetTexture(std::move("logo.png"));
-	go->GetTransform().SetPosition(216, 180, 0);
-	scene.Add(go);*/
+	SceneManager::GetInstance().RootInitialize();
 }
 
-void dae::Minigin::Cleanup()
+void dae::MiniginGame::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
-	SDL_DestroyWindow(window);
-	window = nullptr;
+	SDL_DestroyWindow(m_Window);
+	m_Window = nullptr;
 	SDL_Quit();
 }
 
-void dae::Minigin::Run()
+void dae::MiniginGame::Run()
 {
 	Initialize();
 
@@ -94,9 +83,21 @@ void dae::Minigin::Run()
 				lag -= m_MsPerFrame;
 			}
 
+			sceneManager.Update(deltaTime);
 			renderer.Render();
 		}
 	}
 
 	Cleanup();
+}
+
+void dae::MiniginGame::SetWindowDimensions(float width, float height)
+{
+	m_WindowWidth = width;
+	m_WindowHeight = height;
+}
+
+void dae::MiniginGame::SetGameName(const std::string & name)
+{
+	m_Name = std::move(name);
 }

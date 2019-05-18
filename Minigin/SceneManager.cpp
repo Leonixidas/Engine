@@ -13,7 +13,16 @@ void dae::SceneManager::Update(float elapsedSec)
 
 void dae::SceneManager::Render()
 {
-	m_ActiveScene->RootRender(); // only the active scene needs to render
+	if(m_ActiveScene != nullptr)
+		m_ActiveScene->RootRender(); // only the active scene needs to render
+}
+
+void dae::SceneManager::RootInitialize()
+{
+	for (auto scene : m_Scenes)
+	{
+		scene->RootInitialize();
+	}
 }
 
 void dae::SceneManager::SetActiveScene(const unsigned int id)

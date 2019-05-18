@@ -1,5 +1,4 @@
 #pragma once
-#include "Singleton.h"
 #include "RenderComponent.h"
 
 namespace dae
@@ -14,6 +13,5 @@ namespace dae
 	private:
 		std::vector<RenderComponent> m_RenderComponents;
 	};
-
 }
 

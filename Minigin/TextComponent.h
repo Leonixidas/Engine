@@ -12,8 +12,8 @@ namespace dae
 		std::string m_Text;
 		std::shared_ptr<Font> m_spFont;
 		std::shared_ptr<SDL_Color> m_spColor;
-		std::shared_ptr<Texture2D> m_spTexture;
-		int m_size;
+		int m_FontSize;
+
 	public:
 		TextComponent(const std::shared_ptr<GameObject>& owner);
 		TextComponent(

@@ -9,6 +9,7 @@ namespace dae
 	public:
 		void Update(float elapsedSec);
 		void Render();
+		void RootInitialize();
 		void SetActiveScene(const unsigned int id);
 		Scene& GetActiveScene();
 		void AddScene(const std::shared_ptr<Scene>& scene);

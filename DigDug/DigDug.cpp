@@ -2,9 +2,17 @@
 //
 
 #include "pch.h"
-#include <iostream>
+#include "vld.h"
+#include "MiniginGame.h"
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	using namespace dae;
+
+	MiniginGame *game = new MiniginGame();
+	game->SetGameName(std::move("Dig Dug"));
+	game->SetWindowDimensions(1280, 720);
+	game->Run();
+
+	delete game;
 }
