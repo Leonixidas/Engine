@@ -23,7 +23,7 @@ namespace dae
 		// Components
 		//-----------
 		template <class T>
-		T& GetComponent();
+		T* GetComponent();
 
 		template <class T>
 		bool HasComponent();
@@ -43,17 +43,17 @@ namespace dae
 }
 
 template <class T>
-T& dae::GameObject::GetComponent()
+T* dae::GameObject::GetComponent()
 {
 	for (auto component : m_Components)
 	{
 		if (typeid(*component) == typeid(T))
 		{
-			return *dynamic_cast<T*>(component);
+			return dynamic_cast<T*>(component);
 		}
 	}
 
-	throw std::exception("This gameObject doesn't have a component of this type");
+	return nullptr;
 }
 
 template <class T>

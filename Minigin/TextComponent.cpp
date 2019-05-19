@@ -49,7 +49,7 @@ void dae::TextComponent::SetFont(const std::string & filePath, int size)
 
 void dae::TextComponent::CreateTextureFromFont()
 {
-	TextureComponent texComp = m_pGameObject->GetComponent<TextureComponent>();
+	TextureComponent *texComp = m_pGameObject->GetComponent<TextureComponent>();
 
 	const auto surface = TTF_RenderText_Blended(m_spFont->GetFont(), m_Text.c_str(), *m_spColor);
 	if (surface == nullptr)
@@ -58,8 +58,14 @@ void dae::TextComponent::CreateTextureFromFont()
 	if (texture == nullptr)
 		throw std::runtime_error(std::string("Create texture from surface failed: ") + SDL_GetError());
 
-	texComp.SetTexture(std::make_shared<Texture2D>(texture));
-	texComp.SetTextureWidthAndHeight(float(surface->w), float(surface->h));
+	if (texComp == nullptr)
+	{
+		SDL_FreeSurface(surface);
+		return;
+	}
+
+	texComp->SetTexture(std::make_shared<Texture2D>(texture));
+	texComp->SetTextureWidthAndHeight(float(surface->w), float(surface->h));
 
 	SDL_FreeSurface(surface);
 }

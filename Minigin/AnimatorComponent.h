@@ -3,6 +3,10 @@
 
 namespace dae
 {
+	//TODO make a system that uses conditions to switch animations
+	//Ref Gameplay Programming && UNITY
+	//or use trigger states of the input to change the animation
+	//Observer will come in handy for this
 	class AnimatorComponent final : public BaseComponent
 	{
 	public:
@@ -10,7 +14,7 @@ namespace dae
 		~AnimatorComponent() = default;
 
 		virtual void Update(float elapsedSec);
-		void SetSpriteGrid(int rows, int colums, float rowSize, float columSize);
+		void SetSpriteGrid(int rows, int colums);
 
 		//This is the speed for how fast the next animations clip is shown
 		//so after this value has been reached the next animation clip will be shown
@@ -25,8 +29,8 @@ namespace dae
 	private:
 		void HandleAnimation();
 
-		float m_RowSize;
-		float m_ColumSize;
+		float m_ClipHeight;
+		float m_ClipWidth;
 		float m_AnimationSpeed;
 		float m_AnimationTimer;
 
