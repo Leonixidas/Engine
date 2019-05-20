@@ -26,6 +26,6 @@ bool dae::InputManager::ProcessInput()
 
 bool dae::InputManager::IsPressed(ControllerButton button) const
 {
-	return currentState.Gamepad.wButtons & WORD(button);
+	return (currentState.Gamepad.wButtons & WORD(button)) != 0;
 }
 
