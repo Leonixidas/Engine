@@ -10,7 +10,6 @@ namespace dae
 		virtual ~BaseComponent() = default;
 
 		virtual void Update(float ) {};
-		virtual void Render() const {};
 
 	protected:
 		std::shared_ptr<GameObject> m_pGameObject;

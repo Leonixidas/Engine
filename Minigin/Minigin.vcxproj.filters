@@ -13,129 +13,147 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{f89e375a-feb7-4e36-bda6-d254a0d6a91d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneGraph">
+      <UniqueIdentifier>{054c7dfa-82ee-476d-a367-c5821b673086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content">
+      <UniqueIdentifier>{3bdbc6b9-d2c1-4baa-8a68-7a5daaa76a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{5a3a3dba-7df9-466c-9564-2b7ae6a60fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Diagnostics">
+      <UniqueIdentifier>{0a559386-bcc3-4307-bfb6-85ecde8e6f01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{c5009179-fb22-423e-9db0-aeabb1070926}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniginPCH.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="AnimatorComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="BaseComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="RenderComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="SceneRenderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Content</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Diagnostics</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Diagnostics</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="MiniginGame.h">
-      <Filter>Header Files</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatorComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MiniginPCH.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MiniginPCH.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniginGame.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="TextureComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="AnimatorComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneRenderer.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Content</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Diagnostics</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Diagnostics</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniginGame.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniginPCH.cpp">
+      <Filter>Base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

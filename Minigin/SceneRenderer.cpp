@@ -1,10 +1,9 @@
 #include "MiniginPCH.h"
 #include "SceneRenderer.h"
 
-
-void dae::SceneRenderer::AddRenderComponent(const dae::RenderComponent & component)
+void dae::SceneRenderer::AddRenderComponent(const RenderComponent & component)
 {
-	m_RenderComponents.push_back(std::move(component));
+	m_RenderComponents.push_back(component);
 }
 
 void dae::SceneRenderer::Render() const

@@ -15,7 +15,6 @@ namespace dae
 		Scene& operator=(Scene&& other) = delete;
 
 		int GetID() { return m_ID; }
-		SceneRenderer& GetSceneRenderer();
 
 		// These are needed to make the inherited scenes work. This will add some automated functionality for the derived scenes
 		// for example, the user won't need to call update for the added objects or other stuff
@@ -36,15 +35,16 @@ namespace dae
 		virtual void Initialize() {};
 
 		void AddGameObject(const std::shared_ptr<GameObject>& object);
+
 		explicit Scene(const std::string& name);
 
 	private: 
-		int m_ID;
-		std::unique_ptr<SceneRenderer> m_SceneRenderer;
-		std::string m_Name{};
 		std::vector<std::shared_ptr<GameObject>> m_Objects{};
+		std::string m_Name{};
+		std::shared_ptr<SceneRenderer> m_pSceneRenderer;
 
 		static unsigned int idCounter; 
+		int m_ID;
 	};
 
 }

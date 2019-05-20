@@ -6,7 +6,7 @@ namespace dae
 	class SceneRenderer final
 	{
 	public:
-		virtual ~SceneRenderer() = default;
+		~SceneRenderer() = default;
 		SceneRenderer() = default;
 		void AddRenderComponent(const RenderComponent& component);
 		void Render() const;

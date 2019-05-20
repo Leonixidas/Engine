@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "Renderer.h"
 
 
 void dae::SceneManager::Update(float elapsedSec)
