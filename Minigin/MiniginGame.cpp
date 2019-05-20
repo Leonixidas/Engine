@@ -79,7 +79,7 @@ void dae::MiniginGame::Run()
 			doContinue = input.ProcessInput();
 			while (lag >= m_MsPerFrame)
 			{
-				sceneManager.Update(deltaTime);
+				sceneManager.Update(m_MsPerFrame);
 				lag -= m_MsPerFrame;
 			}
 
