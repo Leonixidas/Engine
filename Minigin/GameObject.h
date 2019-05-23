@@ -11,7 +11,7 @@ namespace dae
 		GameObject();
 		~GameObject();
 
-		virtual void Update(float elapsedSec);
+		virtual void Update();
 
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) noexcept = delete;

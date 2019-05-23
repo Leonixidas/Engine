@@ -1,16 +1,16 @@
 #include "MiniginPCH.h"
 #include "MiniginGame.h"
-#include <chrono>
 #include <thread>
+#include <SDL.h>
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include <SDL.h>
 #include "GameObject.h"
 #include "Scene.h"
 #include "TextureComponent.h"
 #include "Transform.h"
+#include "GameTime.h"
 
 
 void dae::MiniginGame::Initialize()
@@ -62,28 +62,27 @@ void dae::MiniginGame::Run()
 	LoadGame();
 
 	{
-		auto lastTime = std::chrono::high_resolution_clock::now();
 		float lag = 0.f;
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
+		auto& gameTime = GameTime::GetInstance();
+		m_MsPerFrame = gameTime.GetFixedElapsed();
 
 		bool doContinue = true;
 		while (doContinue)
 		{
-			const auto currentTime = std::chrono::high_resolution_clock::now();
-			float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-			lastTime = currentTime;
+			float deltaTime = gameTime.CalulateElapsedTime();
 			lag += deltaTime;
 
 			doContinue = input.ProcessInput();
 			while (lag >= m_MsPerFrame)
 			{
-				sceneManager.Update(m_MsPerFrame);
+				sceneManager.Update();
 				lag -= m_MsPerFrame;
 			}
 
-			sceneManager.Update(deltaTime);
+			sceneManager.Update();
 			renderer.Render();
 		}
 	}

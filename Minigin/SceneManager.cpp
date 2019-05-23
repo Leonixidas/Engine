@@ -4,11 +4,11 @@
 #include "Renderer.h"
 
 
-void dae::SceneManager::Update(float elapsedSec)
+void dae::SceneManager::Update()
 {
 	for(auto scene : m_Scenes)
 	{
-		scene->RootUpdate(elapsedSec);
+		scene->RootUpdate();
 	}
 }
 

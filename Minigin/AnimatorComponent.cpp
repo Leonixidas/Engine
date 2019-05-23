@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "TextureComponent.h"
 #include "Transform.h"
+#include "GameTime.h"
 
 
 dae::AnimatorComponent::AnimatorComponent(const std::shared_ptr<GameObject>& owner)
@@ -19,9 +20,9 @@ dae::AnimatorComponent::AnimatorComponent(const std::shared_ptr<GameObject>& own
 {
 }
 
-void dae::AnimatorComponent::Update(float elapsedSec)
+void dae::AnimatorComponent::Update()
 {
-	m_AnimationTimer += elapsedSec;
+	m_AnimationTimer += GameTime::GetInstance().GetElapsedSec();
 	
 	if (m_AnimationTimer > m_AnimationSpeed)
 	{

@@ -13,7 +13,7 @@ namespace dae
 		AnimatorComponent(const std::shared_ptr<GameObject>& owner);
 		~AnimatorComponent() = default;
 
-		virtual void Update(float elapsedSec);
+		virtual void Update();
 		void SetSpriteGrid(int rows, int colums);
 
 		//This is the speed for how fast the next animations clip is shown

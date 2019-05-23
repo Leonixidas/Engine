@@ -37,13 +37,13 @@ void dae::Scene::AddGameObject(const std::shared_ptr<GameObject>& object)
 	//TODO Log if object already exists
 }
 
-void dae::Scene::RootUpdate(float elapsedSec)
+void dae::Scene::RootUpdate()
 {
-	Update(elapsedSec);
+	Update();
 
 	for (auto obj : m_Objects)
 	{
-		obj->Update(elapsedSec);
+		obj->Update();
 	}
 }
 

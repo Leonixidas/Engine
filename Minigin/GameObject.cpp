@@ -18,16 +18,16 @@ dae::GameObject::~GameObject()
 	}
 }
 
-void dae::GameObject::Update(float elapsedSec)
+void dae::GameObject::Update()
 {
 	for (auto c : m_Components)
 	{
-		c->Update(elapsedSec);
+		c->Update();
 	}
 
 	for (auto o : m_Children)
 	{
-		o->Update(elapsedSec);
+		o->Update();
 	}
 }
 

@@ -7,6 +7,8 @@
 #include "RenderComponent.h"
 #include "SceneRenderer.h"
 #include "TextComponent.h"
+#include "InputManager.h"
+#include "GameTime.h"
 
 dae::TestScene::TestScene()
 	: Scene(std::move("TestScene"))
@@ -43,21 +45,19 @@ void dae::TestScene::Initialize()
 	obj->AddComponent(textComp);
 	m_FPSText = obj;
 	AddGameObject(obj);
+
+	InputManager::GetInstance().AddInputAction({std::make_shared<MoveLeftCommand>(), ControllerButton::ArrowLeft, m_Logo});
+	InputManager::GetInstance().AddInputAction({std::make_shared<MoveRightCommand>(), ControllerButton::ArrowRight, m_Logo});
+	InputManager::GetInstance().AddInputAction({std::make_shared<MoveUpCommand>(), ControllerButton::ArrowUp, m_Logo});
+	InputManager::GetInstance().AddInputAction({std::make_shared<MoveDownCommand>(), ControllerButton::ArrowDown, m_Logo});
 }
 
-void dae::TestScene::Update(float elapsedSec)
+void dae::TestScene::Update()
 {
+	float elapsedSec = GameTime::GetInstance().GetElapsedSec();
 	TextComponent *text = m_FPSText->GetComponent<TextComponent>();
 	if(text != nullptr)
 		m_FPSText->GetComponent<TextComponent>()->SetText(std::move(std::to_string(int(1.f / elapsedSec))));
-
-	glm::vec3 pos = m_Logo->GetTransform().GetPosition();
-	pos.x += 200 * elapsedSec;
-	if (pos.x > 1280.f)
-	{
-		pos.x = 0.f;
-	}
-	m_Logo->GetTransform().SetPosition(pos);
 }
 
 void dae::TestScene::Render() const

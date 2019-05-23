@@ -7,7 +7,7 @@ namespace dae
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
-		void Update(float elapsedSec);
+		void Update();
 		void Render();
 		void RootInitialize();
 		void SetActiveScene(const unsigned int id);

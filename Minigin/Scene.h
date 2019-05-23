@@ -18,7 +18,7 @@ namespace dae
 
 		// These are needed to make the inherited scenes work. This will add some automated functionality for the derived scenes
 		// for example, the user won't need to call update for the added objects or other stuff
-		void RootUpdate(float elapsedSec);
+		void RootUpdate();
 		void RootRender() const;
 		void RootInitialize();
 
@@ -30,7 +30,7 @@ namespace dae
 		// but I was bothered by the creation of them. It's way easier and has a better overview by just making a derived class from this one
 		// instead of calling the scene manager and creating one and then using the return value to add objects etc. (I like structure)
 		// that's why I used this set up for the scenes
-		virtual void Update(float) {};
+		virtual void Update() {};
 		virtual void Render() const {};
 		virtual void Initialize() {};
 

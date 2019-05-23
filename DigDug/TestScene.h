@@ -8,9 +8,9 @@ namespace dae
 		TestScene();
 		~TestScene() = default;
 
-		virtual void Initialize();
-		virtual void Update(float elapsedSec);
-		virtual void Render() const;
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void Render() const override;
 
 	private:
 		std::shared_ptr<GameObject> m_Logo = nullptr;
