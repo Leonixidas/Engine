@@ -1,10 +1,13 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
+#include "ControllerInputComponent.h"
 #include <SDL.h>
 
 
 bool dae::InputManager::ProcessInput()
 {
+	m_KeyPresses.clear();
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
 	{
@@ -12,28 +15,37 @@ bool dae::InputManager::ProcessInput()
 		{
 			return false;
 		}
+
+		if (e.type == SDL_KEYDOWN)
+		{
+			m_KeyPresses.push_back(e.key.keysym.sym);
+		}
 	}
 
 
 	for (DWORD i = 0; i < XUSER_MAX_COUNT; ++i)
 	{
-		ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-		if (XInputGetState(i, &m_CurrentState) == ERROR_DEVICE_NOT_CONNECTED) continue;
-
-		for (InputAction& action : m_InputActions)
+		if (m_InputStates.size() > 0)
 		{
-			if (IsPressed(action.GetTriggerButton()))
-			{
-				action.GetCommand()->Execute(action.GetAffected());
-			}
+			ZeroMemory(&m_InputStates[i], sizeof(XINPUT_STATE));
+			if (XInputGetState(i, &m_InputStates[i]) == ERROR_DEVICE_NOT_CONNECTED) continue;
 		}
 	}
 	
 	return true;
 }
 
-bool dae::InputManager::IsPressed(ControllerButton button) const
+bool dae::InputManager::IsPressed(ControllerButton button, unsigned int controllerID) const
 {
-	return (m_CurrentState.Gamepad.wButtons & int(button)) != 0;
+	if(m_InputStates.size() > 0)
+		return (m_InputStates[controllerID].Gamepad.wButtons & int(button)) != 0;
+	
+	return false;
 }
+
+bool dae::InputManager::IsPressed(SDL_Keycode keycode) const
+{
+	return std::find(m_KeyPresses.begin(), m_KeyPresses.end(), keycode) != m_KeyPresses.end();
+}
+
 

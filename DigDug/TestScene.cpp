@@ -7,8 +7,9 @@
 #include "RenderComponent.h"
 #include "SceneRenderer.h"
 #include "TextComponent.h"
-#include "InputManager.h"
 #include "GameTime.h"
+#include "KeyboardInputComponent.h"
+#include "ControllerInputComponent.h"
 
 dae::TestScene::TestScene()
 	: Scene(std::move("TestScene"))
@@ -32,6 +33,9 @@ void dae::TestScene::Initialize()
 	glm::vec2 texDim = texComp->GetTextureSizes();
 	obj->AddComponent(texComp);
 	obj->GetTransform().SetPosition( 1280.f / 2 - texDim.x / 2, 720.f / 2 - texDim.y / 2 ,0 );
+	ControllerInputComponent* input = new ControllerInputComponent(obj);
+	input->AddInputAction({ std::make_shared<MoveRightCommand>(),ControllerButton::ArrowRight });
+	obj->AddComponent(input);
 	m_Logo = obj;
 	AddGameObject(obj);
 
@@ -43,13 +47,13 @@ void dae::TestScene::Initialize()
 	textComp->SetText(std::move(std::to_string(100)));
 	textComp->SetColor({ 0,255,0,255 });
 	obj->AddComponent(textComp);
+	KeyboardInputComponent* keyInput = new KeyboardInputComponent(obj);
+	keyInput->AddInputAction({ std::make_shared<MoveRightCommand>(), SDLK_d });
+	obj->AddComponent(keyInput);
 	m_FPSText = obj;
 	AddGameObject(obj);
 
-	InputManager::GetInstance().AddInputAction({std::make_shared<MoveLeftCommand>(), ControllerButton::ArrowLeft, m_Logo});
-	InputManager::GetInstance().AddInputAction({std::make_shared<MoveRightCommand>(), ControllerButton::ArrowRight, m_Logo});
-	InputManager::GetInstance().AddInputAction({std::make_shared<MoveUpCommand>(), ControllerButton::ArrowUp, m_Logo});
-	InputManager::GetInstance().AddInputAction({std::make_shared<MoveDownCommand>(), ControllerButton::ArrowDown, m_Logo});
+	
 }
 
 void dae::TestScene::Update()
