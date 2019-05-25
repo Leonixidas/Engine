@@ -89,11 +89,12 @@ void dae::StartScreen::Update()
 	if (text != nullptr)
 		m_FPSText->GetComponent<TextComponent>()->SetText(std::move(std::to_string(avg).substr(0,5)));
 
+	//Changing the selected button on the screen
+	//******************************************
 	if (InputManager::GetInstance().IsPressed(ControllerButton::ArrowDown, 0) ||
 		InputManager::GetInstance().IsPressed(SDLK_DOWN) ||
 		InputManager::GetInstance().IsPressed(SDLK_s))
 	{
-
 		DeselectObject();
 
 		++m_objectIndex;
@@ -115,6 +116,8 @@ void dae::StartScreen::Update()
 		SelectObject();
 	}
 
+	//Checking which button is pressed in the startscreen
+	//***************************************************
 	if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonA, 0) ||
 		InputManager::GetInstance().IsPressed(SDLK_RETURN) ||
 		InputManager::GetInstance().IsPressed(SDLK_RETURN2))

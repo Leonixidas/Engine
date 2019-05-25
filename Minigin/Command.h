@@ -61,12 +61,4 @@ namespace dae
 		~PumpCommand() = default;
 		virtual void Execute(std::shared_ptr<GameObject>&) override;
 	};
-
-	class QuitCommand final : public Command
-	{
-	public:
-		QuitCommand() = default;
-		~QuitCommand() = default;
-		void Execute();
-	};
 }

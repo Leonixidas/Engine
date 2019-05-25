@@ -25,4 +25,11 @@ namespace dae
 		LOOPING,
 		EXITING
 	};
+
+	enum class GameModes
+	{
+		SINGLEPLAYER,
+		MULTIPLAYER_COOP,
+		MULTIPLAYER_VERSUS
+	};
 }
