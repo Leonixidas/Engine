@@ -22,6 +22,7 @@ dae::TextComponent::TextComponent(const std::shared_ptr<GameObject>& owner,
 								  const int & size)
 	: BaseComponent(owner)
 {
+	m_FilePath = std::move(fontFilePath);
 	m_Text = std::move(text);
 	m_FontSize = size;
 	m_spFont = ResourceManager::GetInstance().LoadFont(fontFilePath, size);
@@ -41,9 +42,17 @@ void dae::TextComponent::SetText(const std::string & text)
 	CreateTextureFromFont();
 }
 
-void dae::TextComponent::SetFont(const std::string & filePath, int size)
+void dae::TextComponent::SetFont(const std::string & filePath)
 {
-	m_spFont = ResourceManager::GetInstance().LoadFont(filePath, size);
+	m_FilePath = std::move(filePath);
+	m_spFont = ResourceManager::GetInstance().LoadFont(filePath, m_FontSize);
+	CreateTextureFromFont();
+}
+
+void dae::TextComponent::SetSize(int size)
+{
+	m_FontSize = size;
+	m_spFont = ResourceManager::GetInstance().LoadFont(m_FilePath, m_FontSize);
 	CreateTextureFromFont();
 }
 

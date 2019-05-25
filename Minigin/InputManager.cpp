@@ -25,7 +25,7 @@ bool dae::InputManager::ProcessInput()
 
 	for (DWORD i = 0; i < XUSER_MAX_COUNT; ++i)
 	{
-		if (m_InputStates.size() > 0)
+		if (!m_InputStates.empty())
 		{
 			ZeroMemory(&m_InputStates[i], sizeof(XINPUT_STATE));
 			if (XInputGetState(i, &m_InputStates[i]) == ERROR_DEVICE_NOT_CONNECTED) continue;
@@ -37,7 +37,7 @@ bool dae::InputManager::ProcessInput()
 
 bool dae::InputManager::IsPressed(ControllerButton button, unsigned int controllerID) const
 {
-	if(m_InputStates.size() > 0)
+	if(!m_InputStates.empty())
 		return (m_InputStates[controllerID].Gamepad.wButtons & int(button)) != 0;
 	
 	return false;

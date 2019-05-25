@@ -70,7 +70,8 @@ void dae::MiniginGame::Run()
 		m_MsPerFrame = gameTime.GetFixedElapsed();
 
 		bool doContinue = true;
-		while (doContinue)
+		m_GameState = GameStates::LOOPING;
+		while (doContinue && m_GameState == GameStates::LOOPING)
 		{
 			float deltaTime = gameTime.CalulateElapsedTime();
 			lag += deltaTime;
@@ -78,7 +79,7 @@ void dae::MiniginGame::Run()
 			doContinue = input.ProcessInput();
 			while (lag >= m_MsPerFrame)
 			{
-				sceneManager.Update();
+				sceneManager.FixedUpdate();
 				lag -= m_MsPerFrame;
 			}
 

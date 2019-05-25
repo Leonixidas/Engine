@@ -10,7 +10,7 @@ namespace dae
 		Command() = default;
 		virtual ~Command() = default;
 
-		virtual void Execute(std::shared_ptr<GameObject>& affected) = 0;
+		virtual void Execute(std::shared_ptr<GameObject>& ) {};
 	};
 
 	class ShootCommand final : public Command
@@ -60,5 +60,13 @@ namespace dae
 		PumpCommand() = default;
 		~PumpCommand() = default;
 		virtual void Execute(std::shared_ptr<GameObject>&) override;
+	};
+
+	class QuitCommand final : public Command
+	{
+	public:
+		QuitCommand() = default;
+		~QuitCommand() = default;
+		void Execute();
 	};
 }

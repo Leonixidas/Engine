@@ -15,6 +15,7 @@ namespace dae
 		Scene& operator=(Scene&& other) = delete;
 
 		int GetID() { return m_ID; }
+		const std::string& GetSceneName() const { return m_Name; }
 
 		// These are needed to make the inherited scenes work. This will add some automated functionality for the derived scenes
 		// for example, the user won't need to call update for the added objects or other stuff

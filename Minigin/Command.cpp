@@ -43,3 +43,8 @@ void dae::MoveDownCommand::Execute(std::shared_ptr<GameObject>& affected)
 void dae::PumpCommand::Execute(std::shared_ptr<GameObject>&)
 {
 }
+
+void dae::QuitCommand::Execute()
+{
+	
+}

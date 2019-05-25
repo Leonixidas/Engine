@@ -5,18 +5,21 @@
 #include "vld.h"
 #include "MiniginGame.h"
 #include "SceneManager.h"
-#include "TestScene.h"
+#include "StartScreen.h"
+#include "MultiplayerScreen.h"
 
 int main()
 {
 	using namespace dae;
 
-	SceneManager::GetInstance().AddScene(std::make_shared<TestScene>());
+	MiniginGame *game = new MiniginGame();
+
+	SceneManager::GetInstance().AddScene(std::make_shared<StartScreen>(game));
+	SceneManager::GetInstance().AddScene(std::make_shared<MultiplayerScreen>());
 	SceneManager::GetInstance().SetActiveScene(0);
 
-	MiniginGame *game = new MiniginGame();
 	game->SetGameName(std::move("Dig Dug"));
-	game->SetWindowDimensions(1280, 720);
+	game->SetWindowDimensions(640, 480);
 	game->Run();
 
 	delete game;

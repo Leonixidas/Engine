@@ -25,9 +25,13 @@ namespace dae
 		//without a frame where it doesn't show the sprite
 		void SetAnimationNumber(int animationNumber);
 
+		void SetSourceStartPos(const glm::vec2& sourcePos) { m_SourceStartPos = sourcePos; }
+
 
 	private:
 		void HandleAnimation();
+
+		glm::vec2 m_SourceStartPos;
 
 		float m_ClipHeight;
 		float m_ClipWidth;

@@ -60,8 +60,8 @@ void dae::AnimatorComponent::HandleAnimation()
 	glm::vec2 pos{};
 	glm::vec3 ownerPos{ m_pGameObject->GetTransform().GetPosition() };
 
-	pos.x = m_ClipWidth * (m_CurrentAnimation % m_Colums);
-	pos.y = m_ClipHeight * (m_CurrentAnimation / m_Colums);
+	pos.x = m_SourceStartPos.x + m_ClipWidth * (m_CurrentAnimation % m_Colums);
+	pos.y = m_SourceStartPos.y + m_ClipHeight * (m_CurrentAnimation / m_Colums);
 
 	texComp->SetSourceRect(pos, m_ClipWidth, m_ClipHeight);
 	texComp->SetDestRect({ ownerPos.x, ownerPos.y }, m_ClipWidth, m_ClipHeight);

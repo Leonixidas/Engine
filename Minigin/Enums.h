@@ -18,4 +18,11 @@ namespace dae
 		ButtonX = XINPUT_GAMEPAD_X,
 		ButtonY = XINPUT_GAMEPAD_Y
 	};
+
+	enum class GameStates
+	{
+		INITIALIZING,
+		LOOPING,
+		EXITING
+	};
 }

@@ -22,7 +22,7 @@ void dae::TestScene::Initialize()
 	TextureComponent* texComp = new TextureComponent(obj);
 	texComp->SetTexture(std::move("background.jpg"));
 
-	texComp->SetDestRect({ 0,0 }, 1280.f, 720.f);
+	texComp->SetDestRect({ 0,0 }, 640.f, 480.f);
 	obj->AddComponent(texComp);
 
 	AddGameObject(obj);
@@ -32,7 +32,7 @@ void dae::TestScene::Initialize()
 	texComp->SetTexture(std::move("logo.png"));
 	glm::vec2 texDim = texComp->GetTextureSizes();
 	obj->AddComponent(texComp);
-	obj->GetTransform().SetPosition( 1280.f / 2 - texDim.x / 2, 720.f / 2 - texDim.y / 2 ,0 );
+	obj->GetTransform().SetPosition( 640.f / 2 - texDim.x / 2, 480.f / 2 - texDim.y / 2 ,0 );
 	ControllerInputComponent* input = new ControllerInputComponent(obj);
 	input->AddInputAction({ std::make_shared<MoveRightCommand>(),ControllerButton::ArrowRight });
 	obj->AddComponent(input);
@@ -43,7 +43,7 @@ void dae::TestScene::Initialize()
 	texComp = new TextureComponent(obj);
 	obj->AddComponent(texComp);
 	TextComponent *textComp = new TextComponent(obj);
-	textComp->SetFont(std::move("Lingua.otf"), 36);
+	textComp->SetFont(std::move("Lingua.otf"));
 	textComp->SetText(std::move(std::to_string(100)));
 	textComp->SetColor({ 0,255,0,255 });
 	obj->AddComponent(textComp);

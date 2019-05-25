@@ -12,6 +12,7 @@ namespace dae
 		virtual void Update() override;
 		virtual void Render() const override;
 
+
 	private:
 		std::shared_ptr<GameObject> m_Logo = nullptr;
 		std::shared_ptr<GameObject> m_FPSText = nullptr;
