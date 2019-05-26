@@ -100,7 +100,7 @@ void imp::StartScreen::Update()
 		DeselectObject();
 
 		++m_objectIndex;
-		if (m_objectIndex >= m_Objects.size())
+		if (m_objectIndex >= int(m_Objects.size()))
 			m_objectIndex = 0;
 		
 		SelectObject();
