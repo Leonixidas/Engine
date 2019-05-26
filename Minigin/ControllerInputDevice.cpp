@@ -17,13 +17,13 @@ void imp::ControllerInputDevice::AddInputAction(const ControllerInputAction & ac
 	m_InputActions.back().SetID(unsigned int(m_InputActions.size() - 1));
 }
 
-void imp::ControllerInputDevice::OnNotify(WORD controllerButton)
+void imp::ControllerInputDevice::Update()
 {
 	for (auto action : m_InputActions)
 	{
-		if (int(action.GetTriggerButton()) & controllerButton != 0)
+		if ((InputManager::GetInstance().IsPressed(action.GetTriggerButton(), m_ControllerID)))
 		{
-			action.GetCommand()->Execute();
+			action.GetCommand()->Execute(action.GetGameObject());
 		}
 	}
 }

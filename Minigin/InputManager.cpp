@@ -1,6 +1,6 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
-#include "ControllerInputComponent.h"
+#include "ControllerInputDevice.h"
 #include <SDL.h>
 
 

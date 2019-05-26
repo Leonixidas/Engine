@@ -7,20 +7,20 @@
 #include "SceneManager.h"
 #include "StartScreen.h"
 #include "MultiplayerScreen.h"
+#include "Level1.h"
 
 int main()
 {
 	using namespace imp;
 
-	MiniginGame *game = new MiniginGame();
+	std::shared_ptr<MiniginGame> game = std::shared_ptr<MiniginGame>(new MiniginGame());
 
-	SceneManager::GetInstance().AddScene(std::make_shared<StartScreen>(game));
-	SceneManager::GetInstance().AddScene(std::make_shared<MultiplayerScreen>());
+	SceneManager::GetInstance().AddScene(std::shared_ptr<StartScreen>(new StartScreen(game)));
+	SceneManager::GetInstance().AddScene(std::shared_ptr<MultiplayerScreen>(new MultiplayerScreen(game)));
+	SceneManager::GetInstance().AddScene(std::shared_ptr<Level1>(new Level1(game)));
 	SceneManager::GetInstance().SetActiveScene(0);
 
 	game->SetGameName(std::move("Dig Dug"));
-	game->SetWindowDimensions(640, 480);
+	game->SetWindowDimensions(480, 640);
 	game->Run();
-
-	delete game;
 }

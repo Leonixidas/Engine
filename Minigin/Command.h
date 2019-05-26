@@ -10,8 +10,7 @@ namespace imp
 		Command() = default;
 		virtual ~Command() = default;
 
-		virtual void Execute(std::shared_ptr<GameObject>& ) {}
-		virtual void Execute() {}
+		virtual void Execute(std::shared_ptr<GameObject>&) {};
 	};
 
 	class ShootCommand final : public Command

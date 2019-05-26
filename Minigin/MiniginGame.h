@@ -1,5 +1,4 @@
 #pragma once
-#include "Enums.h"
 
 struct SDL_Window;
 
@@ -13,17 +12,23 @@ namespace imp
 		float m_WindowHeight = 480.f;
 		std::string m_Name = "Programming 4 Assignment";
 
-		GameStates m_GameState = GameStates::INITIALIZING;
+		bool m_IsExiting = false;
 		int m_GameMode = 0;
 
 	public:
 		void Initialize();
-		void LoadGame() const;
 		void Cleanup();
 		void Run();
+
 		void SetWindowDimensions(float width, float height);
 		void SetGameName(const std::string& name);
-		void SetGameState(GameStates state) { m_GameState = state; }
+
+		void SetGameMode(int gamemode) { m_GameMode = gamemode; }
+		int GetGameMode() { return m_GameMode; }
+
+		void SetGameState(bool isExiting) { m_IsExiting = isExiting; }
+
+		glm::vec2 GetWindowDimensions() { return { m_WindowWidth, m_WindowHeight }; }
 		const SDL_Window& GetGameWindow() { return *m_Window; }
 	};
 }

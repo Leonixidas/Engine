@@ -14,7 +14,7 @@ namespace imp
 
 		void AddInputAction(const ControllerInputAction& action);
 		unsigned int GetControllerID() { return m_ControllerID; }
-		virtual void OnNotify(WORD controllerButton) override;
+		void Update();
 		
 	private:
 		static unsigned int m_ControllerCounter;

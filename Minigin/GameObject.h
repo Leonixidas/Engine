@@ -9,6 +9,7 @@ namespace imp
 	{
 	public:
 		GameObject();
+		GameObject(const std::shared_ptr<GameObject>& parent);
 		~GameObject();
 
 		virtual void Update();
@@ -19,6 +20,8 @@ namespace imp
 		GameObject& operator=(GameObject&& other)noexcept = delete;
 
 		Transform& GetTransform() { return *m_Transform; }
+		
+		const std::vector<std::shared_ptr<GameObject>>& GetChildren() { return m_Children; }
 
 		// Components
 		//-----------
@@ -39,6 +42,7 @@ namespace imp
 		std::vector<BaseComponent*> m_Components;
 		std::vector<std::shared_ptr<GameObject>> m_Children;
 		std::shared_ptr<Transform> m_Transform;
+		std::shared_ptr<GameObject> m_Parent = nullptr;
 	};
 }
 

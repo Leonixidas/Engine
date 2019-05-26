@@ -5,7 +5,13 @@
 
 
 imp::GameObject::GameObject()
-	: m_Transform(std::make_shared<Transform>())
+	: m_Transform(std::shared_ptr<Transform>(new Transform()))
+{
+}
+
+imp::GameObject::GameObject(const std::shared_ptr<GameObject>& parent)
+	:m_Transform(std::shared_ptr<Transform>(new Transform()))
+	,m_Parent(parent)
 {
 }
 

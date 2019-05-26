@@ -34,13 +34,10 @@ void imp::MiniginGame::Initialize()
 	}
 
 	Renderer::GetInstance().Init(m_Window);
-}
 
-/**
- * Code constructing the scene world starts here
- */
-void imp::MiniginGame::LoadGame() const
-{
+	// tell the resource manager where he can find the game data
+	ResourceManager::GetInstance().Init("../Data/");
+
 	SceneManager::GetInstance().RootInitialize();
 }
 
@@ -56,11 +53,6 @@ void imp::MiniginGame::Run()
 {
 	Initialize();
 
-	// tell the resource manager where he can find the game data
-	ResourceManager::GetInstance().Init("../Data/");
-
-	LoadGame();
-
 	{
 		float lag = 0.f;
 		auto& renderer = Renderer::GetInstance();
@@ -70,8 +62,7 @@ void imp::MiniginGame::Run()
 		m_MsPerFrame = gameTime.GetFixedElapsed();
 
 		bool doContinue = true;
-		m_GameState = GameStates::LOOPING;
-		while (doContinue && m_GameState == GameStates::LOOPING)
+		while (doContinue && !m_IsExiting)
 		{
 			float deltaTime = gameTime.CalulateElapsedTime();
 			lag += deltaTime;

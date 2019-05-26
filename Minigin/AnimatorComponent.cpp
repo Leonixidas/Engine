@@ -1,68 +1,87 @@
 #include "MiniginPCH.h"
+#include <algorithm>
 #include "AnimatorComponent.h"
 #include "GameObject.h"
 #include "TextureComponent.h"
+#include "PlayerComponent.h"
 #include "Transform.h"
 #include "GameTime.h"
 
 
 imp::AnimatorComponent::AnimatorComponent(const std::shared_ptr<GameObject>& owner)
 	: BaseComponent(owner)
-	, m_AnimationSpeed(0.1f)
 	, m_AnimationTimer()
-	, m_ClipWidth()
-	, m_ClipHeight()
-	, m_Colums()
-	, m_Rows()
-	, m_AnimationClip()
-	, m_AnimationNumber()
-	, m_CurrentAnimation()
+	, m_CurrentFrame()
 {
 }
 
 void imp::AnimatorComponent::Update()
 {
-	m_AnimationTimer += GameTime::GetInstance().GetElapsedSec();
-	
-	if (m_AnimationTimer > m_AnimationSpeed)
-	{
-		++m_CurrentAnimation %= m_AnimationNumber;
-		HandleAnimation();
-	}
-}
-
-void imp::AnimatorComponent::SetSpriteGrid(int rows, int colums)
-{
-	m_Rows = rows;
-	m_Colums = colums;
-
-	TextureComponent *tex = m_pGameObject->GetComponent<TextureComponent>();
-	glm::vec2 texDim = tex->GetTextureSizes();
-
-	m_ClipWidth = texDim.x / m_Colums;
-	m_ClipHeight = texDim.y / m_Rows;
-}
-
-void imp::AnimatorComponent::SetAnimationSpeed(float animationSpeed)
-{
-	m_AnimationSpeed = animationSpeed;
-}
-
-void imp::AnimatorComponent::SetAnimationNumber(int animationNumber)
-{
-	m_AnimationNumber = animationNumber;
+	HandleAnimation();
 }
 
 void imp::AnimatorComponent::HandleAnimation()
 {
-	TextureComponent *texComp = m_pGameObject->GetComponent<TextureComponent>();
-	if (texComp == nullptr) return;
-	glm::vec2 pos{};
-	glm::vec3 ownerPos{ m_pGameObject->GetTransform().GetPosition() };
+	auto texComp = m_pGameObject->GetComponent<TextureComponent>();
+	auto player = m_pGameObject->GetComponent<PlayerComponent>();
+	float elapsedSec = GameTime::GetInstance().GetElapsedSec();
+	
+	if (player != nullptr)
+	{
+		PlayerState state = player->GetPlayerState();
+		if (m_CurrentAnimClip != nullptr)
+		{
+			if (int(state) != m_CurrentAnimClip->GetPlayerState())
+			{
+				auto it = std::find_if(m_AnimationClips.begin(), m_AnimationClips.end(), [state](std::shared_ptr<AnimationClip>& clip) { return clip->GetPlayerState() == int(state); });
 
-	pos.x = m_SourceStartPos.x + m_ClipWidth * (m_CurrentAnimation % m_Colums);
-	pos.y = m_SourceStartPos.y + m_ClipHeight * (m_CurrentAnimation / m_Colums);
+				if (it != m_AnimationClips.end())
+				{
+					m_CurrentAnimClip = (*it);
+				}
+				
+				m_CurrentFrame = 0;
+				m_AnimationTimer = 0.f;
+				glm::vec3 pos = m_pGameObject->GetTransform().GetPosition();
+				glm::vec2 texPos = m_CurrentAnimClip->GetTexturePosition();
+				glm::vec2 size = m_CurrentAnimClip->GetFrameSize();
+				texComp->SetSourceRect(texPos, size.x, size.y);
+				
+				texComp->SetDestRect({ pos.x,pos.y }, size.x, size.y);
+			}
+		}
+		else
+		{
+			auto it = std::find_if(m_AnimationClips.begin(), m_AnimationClips.end(), [state](std::shared_ptr<AnimationClip>& clip) { return clip->GetPlayerState() == int(state); });
+			
+			if (it != m_AnimationClips.end())
+			{
+				m_CurrentAnimClip = (*it);
+			}
 
-	texComp->SetSourceRect(pos, m_ClipWidth, m_ClipHeight);
-	texComp->SetDestRect({ ownerPos.x, ownerPos.y }, m_ClipWidth, m_ClipHeight);
+			m_CurrentFrame = 0;
+			m_AnimationTimer = 0.f;
+			glm::vec3 pos = m_pGameObject->GetTransform().GetPosition();
+			glm::vec2 texPos = m_CurrentAnimClip->GetTexturePosition();
+			glm::vec2 size = m_CurrentAnimClip->GetFrameSize();
+			texComp->SetSourceRect(texPos, size.x, size.y);
+			texComp->SetDestRect({ pos.x,pos.y }, size.x, size.y);
+		}
+	}
+
+	if (m_CurrentAnimClip->GetFrameAmount() > 1)
+	{
+		m_AnimationTimer += m_CurrentAnimClip->GetAnimationSpeed() * elapsedSec;
+
+		if (m_AnimationTimer > m_CurrentAnimClip->GetFrameTime())
+		{
+			m_AnimationTimer = 0.0f;
+			++m_CurrentFrame;
+			m_CurrentFrame %= m_CurrentAnimClip->GetFrameAmount();
+			glm::vec2 pos = m_CurrentAnimClip->GetTexturePosition();
+			glm::vec2 size = m_CurrentAnimClip->GetFrameSize();
+			pos.x = pos.x + m_CurrentFrame * size.x;
+			texComp->SetSourceRect( pos, size.x, size.y );
+		}
+	}
 }

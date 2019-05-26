@@ -10,9 +10,10 @@
 unsigned int imp::Scene::idCounter = 0;
 
 
-imp::Scene::Scene(const std::string& name)
+imp::Scene::Scene(const std::string& name, const std::shared_ptr<MiniginGame>& game)
 	: m_Name(name)
-	, m_pSceneRenderer(std::make_shared<SceneRenderer>())
+	, m_pSceneRenderer(std::shared_ptr<SceneRenderer>(new SceneRenderer()))
+	, m_pGame(game)
 { 
 	m_ID = idCounter;
 	++idCounter;
@@ -32,7 +33,7 @@ void imp::Scene::AddGameObject(const std::shared_ptr<GameObject>& object)
 	{
 		m_Objects.push_back(object);
 		if (object->HasComponent<TextureComponent>() || object->HasComponent<TextComponent>())
-			m_pSceneRenderer->AddRenderComponent(RenderComponent(object));
+			m_pSceneRenderer->AddRenderComponent(std::move(RenderComponent(object)));
 	}
 	//TODO Log if object already exists
 }
@@ -54,6 +55,7 @@ void imp::Scene::RootRender() const
 
 void imp::Scene::RootInitialize()
 {
+	m_IsInitialized = true;
 	Initialize();
 }
 

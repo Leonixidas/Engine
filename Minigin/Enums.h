@@ -25,4 +25,22 @@ namespace imp
 		LOOPING,
 		EXITING
 	};
+
+	enum class PlayerState
+	{
+		IDLE,
+		RUNNING,
+		DIGGING,
+		PUMPING,
+		SHOOTING,
+		DYING
+	};
+
+	enum class Direction
+	{
+		FACE_RIGHT,
+		FACE_LEFT,
+		FACE_DOWN,
+		FACE_UP
+	};
 }

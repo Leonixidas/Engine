@@ -3,11 +3,10 @@
 
 namespace imp
 {
-	class MultiplayerScreen :
-		public Scene
+	class MultiplayerScreen :	public Scene
 	{
 	public:
-		MultiplayerScreen();
+		MultiplayerScreen(const std::shared_ptr<MiniginGame>& game);
 		~MultiplayerScreen() = default;
 
 		virtual void Initialize() override;

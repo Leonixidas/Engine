@@ -4,6 +4,7 @@ namespace imp
 {
 	class GameObject;
 	class SceneRenderer;
+	class MiniginGame;
 
 	class Scene
 	{
@@ -23,6 +24,8 @@ namespace imp
 		void RootRender() const;
 		void RootInitialize();
 
+		bool GetIsInitialized() { return m_IsInitialized; }
+
 	protected:
 		// These are the functions that will be used for the derived class. 
 		// I know we need to prefer composition over inheritance but,
@@ -37,7 +40,9 @@ namespace imp
 
 		void AddGameObject(const std::shared_ptr<GameObject>& object);
 
-		explicit Scene(const std::string& name);
+		explicit Scene(const std::string& name, const std::shared_ptr<MiniginGame>& game);
+
+		std::shared_ptr<MiniginGame> m_pGame;
 
 	private: 
 		std::vector<std::shared_ptr<GameObject>> m_Objects{};
@@ -46,6 +51,7 @@ namespace imp
 
 		static unsigned int idCounter; 
 		int m_ID;
+		bool m_IsInitialized = false;
 	};
 
 }

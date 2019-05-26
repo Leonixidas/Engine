@@ -3,7 +3,7 @@
 
 void imp::SceneRenderer::AddRenderComponent(const RenderComponent & component)
 {
-	m_RenderComponents.push_back(component);
+	m_RenderComponents.push_back(std::move(component));
 }
 
 void imp::SceneRenderer::Render() const

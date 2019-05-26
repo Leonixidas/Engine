@@ -7,17 +7,20 @@
 #include <InputManager.h>
 #include <GameTime.h>
 #include <SceneManager.h>
+#include "DigDugEnums.h"
 
 
-imp::MultiplayerScreen::MultiplayerScreen()
-	: Scene(std::move("MultiplayerScreen"))
+imp::MultiplayerScreen::MultiplayerScreen(const std::shared_ptr<MiniginGame>& game)
+	: Scene(std::move("MultiplayerScreen"), game)
 {
 }
 
 void imp::MultiplayerScreen::Initialize()
 {
+	glm::vec2 gameSize = m_pGame->GetWindowDimensions();
+
 	//COOP
-	auto obj = std::make_shared<GameObject>();
+	auto obj = std::shared_ptr<GameObject>(new GameObject());
 	m_Objects.push_back(obj);
 
 	auto textureComp = new TextureComponent(obj);
@@ -31,12 +34,12 @@ void imp::MultiplayerScreen::Initialize()
 
 	glm::vec2 halfsize = { float(textureComp->GetDestRect().w) * 0.5f, float(textureComp->GetDestRect().h) };
 	float offset = 30.f;
-	obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f - (offset + halfsize.y), 0.f);
+	obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f - (offset + halfsize.y), 0.f);
 
 	AddGameObject(obj);
 
 	//VERSUS
-	obj = std::make_shared<GameObject>();
+	obj = std::shared_ptr<GameObject>(new GameObject());
 	m_Objects.push_back(obj);
 
 	textureComp = new TextureComponent(obj);
@@ -47,12 +50,12 @@ void imp::MultiplayerScreen::Initialize()
 	obj->AddComponent(textComp);
 
 	halfsize = { float(textureComp->GetDestRect().w) * 0.5f, float(textureComp->GetDestRect().h) * 0.5f };
-	obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f - halfsize.y, 0.f);
+	obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f - halfsize.y, 0.f);
 
 	AddGameObject(obj);
 
 	//BACK
-	obj = std::make_shared<GameObject>();
+	obj = std::shared_ptr<GameObject>(new GameObject());
 	m_Objects.push_back(obj);
 
 	textureComp = new TextureComponent(obj);
@@ -63,11 +66,12 @@ void imp::MultiplayerScreen::Initialize()
 	obj->AddComponent(textComp);
 
 	halfsize = { float(textureComp->GetDestRect().w) * 0.5f, float(textureComp->GetDestRect().h) };
-	obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f + halfsize.y, 0.f);
+	obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f + halfsize.y, 0.f);
 
 	AddGameObject(obj);
 
-	obj = std::make_shared<GameObject>();
+	//FPS
+	obj = std::shared_ptr<GameObject>(new GameObject());
 	textureComp = new TextureComponent(obj);
 	obj->AddComponent(textureComp);
 	textComp = new TextComponent(obj);
@@ -85,7 +89,7 @@ void imp::MultiplayerScreen::Update()
 	avg = float(int(avg * 100)) / 100.f;
 	TextComponent *text = m_FPSText->GetComponent<TextComponent>();
 	if (text != nullptr)
-		m_FPSText->GetComponent<TextComponent>()->SetText(std::move(std::to_string(avg).substr(0, 5)));
+		m_FPSText->GetComponent<TextComponent>()->SetText(std::move(std::to_string(avg).substr(0, 4)));
 
 	if (InputManager::GetInstance().IsPressed(ControllerButton::ArrowDown, 0) ||
 		InputManager::GetInstance().IsPressed(SDLK_DOWN) ||
@@ -118,9 +122,15 @@ void imp::MultiplayerScreen::Update()
 		InputManager::GetInstance().IsPressed(SDLK_RETURN2))
 	{
 		if (m_objectIndex == 0)
-			SceneManager::GetInstance().SetActiveScene(std::move("Co-opPlay"));
+		{
+			m_pGame->SetGameMode(int(DigDugGameModes::MULTIPLAYER_COOP));
+			SceneManager::GetInstance().SetActiveScene(std::move("Level1"));
+		}
 		else if (m_objectIndex == 1)
-			SceneManager::GetInstance().SetActiveScene(std::move("VersusPlay"));
+		{
+			m_pGame->SetGameMode(int(DigDugGameModes::MULTIPLAYER_COOP));
+			SceneManager::GetInstance().SetActiveScene(std::move("VersusLevel1"));
+		}
 		else
 			SceneManager::GetInstance().GoToPreviousScene();
 
@@ -136,6 +146,8 @@ void imp::MultiplayerScreen::Render() const
 
 void imp::MultiplayerScreen::DeselectObject()
 {
+	glm::vec2 gameSize = m_pGame->GetWindowDimensions();
+
 	auto obj = m_Objects[m_objectIndex];
 	auto textComp = obj->GetComponent<TextComponent>();
 	auto textureComp = obj->GetComponent<TextureComponent>();
@@ -148,21 +160,23 @@ void imp::MultiplayerScreen::DeselectObject()
 	if (m_objectIndex - 1 == 0)
 	{
 		halfsize.y *= 0.5f;
-		obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f - halfsize.y, 0.f);
+		obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f - halfsize.y, 0.f);
 	}
 	else if (m_objectIndex - 1 < 0)
 	{
 		float offset = 30.f;
-		obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f - (offset + halfsize.y), 0.f);
+		obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f - (offset + halfsize.y), 0.f);
 	}
 	else
 	{
-		obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f + (halfsize.y), 0.f);
+		obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f + (halfsize.y), 0.f);
 	}
 }
 
 void imp::MultiplayerScreen::SelectObject()
 {
+	glm::vec2 gameSize = m_pGame->GetWindowDimensions();
+
 	auto obj = m_Objects[m_objectIndex];
 	auto textComp = obj->GetComponent<TextComponent>();
 	auto textureComp = obj->GetComponent<TextureComponent>();
@@ -176,14 +190,14 @@ void imp::MultiplayerScreen::SelectObject()
 	if (m_objectIndex - 1 == 0)
 	{
 		halfsize.y *= 0.5f;
-		obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f - halfsize.y, 0.f);
+		obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f - halfsize.y, 0.f);
 	}
 	else if (m_objectIndex - 1 < 0)
 	{
-		obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f - (offset + halfsize.y), 0.f);
+		obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f - (offset + halfsize.y), 0.f);
 	}
 	else
 	{
-		obj->GetTransform().SetPosition(640.f / 2.f - halfsize.x, 480.f / 2.f + halfsize.y, 0.f);
+		obj->GetTransform().SetPosition(gameSize.x / 2.f - halfsize.x, gameSize.y / 2.f + halfsize.y, 0.f);
 	}
 }

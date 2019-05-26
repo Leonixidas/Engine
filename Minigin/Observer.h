@@ -1,4 +1,5 @@
 #pragma once
+#include "SDL_keycode.h"
 
 namespace imp
 {
@@ -7,8 +8,8 @@ namespace imp
 	public:
 		Observer() = default;
 		virtual ~Observer() = default;
-		virtual void OnNotify(WORD controllerButton) {}
-		virtual void OnNotify(SDL_Keycode keyboardButton) {}
+		virtual void OnNotify(WORD ) {}
+		virtual void OnNotify(SDL_Keycode ) {}
 	};
 }
 

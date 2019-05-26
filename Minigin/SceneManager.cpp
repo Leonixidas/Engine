@@ -19,10 +19,9 @@ void imp::SceneManager::Render()
 
 void imp::SceneManager::RootInitialize()
 {
-	for (auto scene : m_Scenes)
-	{
-		scene->RootInitialize();
-	}
+	m_IsInitialized = true;
+	if(m_ActiveScene != nullptr)
+		m_ActiveScene->RootInitialize();
 }
 
 void imp::SceneManager::SetActiveScene(const unsigned int id)
@@ -31,6 +30,10 @@ void imp::SceneManager::SetActiveScene(const unsigned int id)
 	{
 		m_PreviousScene = m_ActiveScene;
 		m_ActiveScene = m_Scenes[id];
+		if (m_ActiveScene->GetIsInitialized() == false && m_IsInitialized == true)
+		{
+			m_ActiveScene->RootInitialize();
+		}
 	}
 }
 

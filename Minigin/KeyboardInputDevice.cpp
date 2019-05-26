@@ -2,23 +2,23 @@
 #include "InputManager.h"
 #include "KeyboardInputDevice.h"
 
-imp::KeyboardInputComponent::KeyboardInputComponent()
+imp::KeyboardInputDevice::KeyboardInputDevice()
 {
 }
 
-void imp::KeyboardInputComponent::AddInputAction(const KeyBoardInputAction & action)
+void imp::KeyboardInputDevice::AddInputAction(const KeyBoardInputAction & action)
 {
 	m_InputActions.push_back(action);
 	m_InputActions.back().SetID(unsigned int(m_InputActions.size() - 1));
 }
 
-void imp::KeyboardInputComponent::OnNotify(SDL_Keycode keyboardButton)
+void imp::KeyboardInputDevice::Update()
 {
 	for (auto action : m_InputActions)
 	{
-		if (action.GetTriggerButton() == keyboardButton)
+		if (InputManager::GetInstance().IsPressed(action.GetTriggerButton()))
 		{
-			action.GetCommand()->Execute();
+			action.GetCommand()->Execute(action.GetGameObject());
 		}
 	}
 }

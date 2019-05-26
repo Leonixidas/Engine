@@ -6,14 +6,14 @@ namespace imp
 {
 	class GameObject;
 
-	class KeyboardInputComponent final : public InputDevice
+	class KeyboardInputDevice final : public InputDevice
 	{
 	public:
-		KeyboardInputComponent();
-		~KeyboardInputComponent() = default;
+		KeyboardInputDevice();
+		~KeyboardInputDevice() = default;
 
 		void AddInputAction(const KeyBoardInputAction& action);
-		virtual void OnNotify(SDL_Keycode keyboardButton) override;
+		void Update();
 
 	private:
 		std::vector<KeyBoardInputAction> m_InputActions;

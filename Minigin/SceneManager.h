@@ -21,6 +21,7 @@ namespace imp
 		std::vector<std::shared_ptr<Scene>> m_Scenes;
 		std::shared_ptr<Scene> m_ActiveScene;
 		std::shared_ptr<Scene> m_PreviousScene;
+		bool m_IsInitialized = false;
 	};
 
 }
