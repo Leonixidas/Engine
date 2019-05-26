@@ -1,6 +1,6 @@
 #include "BaseComponent.h"
 
-namespace dae
+namespace imp
 {
 	class Transform final
 	{

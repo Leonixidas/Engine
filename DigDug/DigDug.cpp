@@ -10,7 +10,7 @@
 
 int main()
 {
-	using namespace dae;
+	using namespace imp;
 
 	MiniginGame *game = new MiniginGame();
 

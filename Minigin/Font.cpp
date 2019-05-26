@@ -1,11 +1,11 @@
 #include "MiniginPCH.h"
 #include "Font.h"
 
-TTF_Font* dae::Font::GetFont() const {
+TTF_Font* imp::Font::GetFont() const {
 	return mFont;
 }
 
-dae::Font::Font(const std::string& fullPath, unsigned int size) : mFont(nullptr), mSize(size)
+imp::Font::Font(const std::string& fullPath, unsigned int size) : mFont(nullptr), mSize(size)
 {
 	mFont = TTF_OpenFont(fullPath.c_str(), size);
 	if (mFont == nullptr) 
@@ -14,7 +14,7 @@ dae::Font::Font(const std::string& fullPath, unsigned int size) : mFont(nullptr)
 	}
 }
 
-dae::Font::~Font()
+imp::Font::~Font()
 {
 	TTF_CloseFont(mFont);
 }

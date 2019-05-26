@@ -3,7 +3,7 @@
 
 struct SDL_Window;
 
-namespace dae
+namespace imp
 {
 	class MiniginGame
 	{
@@ -12,7 +12,10 @@ namespace dae
 		float m_WindowWidth = 640.f;
 		float m_WindowHeight = 480.f;
 		std::string m_Name = "Programming 4 Assignment";
+
 		GameStates m_GameState = GameStates::INITIALIZING;
+		int m_GameMode = 0;
+
 	public:
 		void Initialize();
 		void LoadGame() const;

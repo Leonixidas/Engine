@@ -1,7 +1,7 @@
 #pragma once
 #include "Singleton.h"
 
-namespace dae
+namespace imp
 {
 	class Texture2D;
 	class Font;

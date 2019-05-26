@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dae
+namespace imp
 {
 	class GameObject;
 
@@ -10,7 +10,8 @@ namespace dae
 		Command() = default;
 		virtual ~Command() = default;
 
-		virtual void Execute(std::shared_ptr<GameObject>& ) {};
+		virtual void Execute(std::shared_ptr<GameObject>& ) {}
+		virtual void Execute() {}
 	};
 
 	class ShootCommand final : public Command

@@ -3,7 +3,7 @@
 #include "SDL_rect.h"
 
 
-namespace dae
+namespace imp
 {
 	class Texture2D;
 

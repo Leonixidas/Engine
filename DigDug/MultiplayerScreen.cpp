@@ -9,12 +9,12 @@
 #include <SceneManager.h>
 
 
-dae::MultiplayerScreen::MultiplayerScreen()
+imp::MultiplayerScreen::MultiplayerScreen()
 	: Scene(std::move("MultiplayerScreen"))
 {
 }
 
-void dae::MultiplayerScreen::Initialize()
+void imp::MultiplayerScreen::Initialize()
 {
 	//COOP
 	auto obj = std::make_shared<GameObject>();
@@ -79,7 +79,7 @@ void dae::MultiplayerScreen::Initialize()
 	AddGameObject(obj);
 }
 
-void dae::MultiplayerScreen::Update()
+void imp::MultiplayerScreen::Update()
 {
 	float avg = GameTime::GetInstance().GetFPS();
 	avg = float(int(avg * 100)) / 100.f;
@@ -130,11 +130,11 @@ void dae::MultiplayerScreen::Update()
 	}
 }
 
-void dae::MultiplayerScreen::Render() const
+void imp::MultiplayerScreen::Render() const
 {
 }
 
-void dae::MultiplayerScreen::DeselectObject()
+void imp::MultiplayerScreen::DeselectObject()
 {
 	auto obj = m_Objects[m_objectIndex];
 	auto textComp = obj->GetComponent<TextComponent>();
@@ -161,7 +161,7 @@ void dae::MultiplayerScreen::DeselectObject()
 	}
 }
 
-void dae::MultiplayerScreen::SelectObject()
+void imp::MultiplayerScreen::SelectObject()
 {
 	auto obj = m_Objects[m_objectIndex];
 	auto textComp = obj->GetComponent<TextComponent>();

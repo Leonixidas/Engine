@@ -9,13 +9,13 @@
 #include <SceneManager.h>
 
 
-dae::StartScreen::StartScreen(MiniginGame* game)
+imp::StartScreen::StartScreen(MiniginGame* game)
 	: Scene("StartScreen")
 	, m_pGame(game)
 {
 }
 
-void dae::StartScreen::Initialize()
+void imp::StartScreen::Initialize()
 {
 	//SINGLEPLAYER
 	auto obj = std::make_shared<GameObject>();
@@ -81,7 +81,7 @@ void dae::StartScreen::Initialize()
 
 }
 
-void dae::StartScreen::Update()
+void imp::StartScreen::Update()
 {
 	float avg = GameTime::GetInstance().GetFPS();
 	avg = float(int(avg * 100)) / 100.f;
@@ -135,11 +135,11 @@ void dae::StartScreen::Update()
 	}
 }
 
-void dae::StartScreen::Render() const
+void imp::StartScreen::Render() const
 {
 }
 
-void dae::StartScreen::DeselectObject()
+void imp::StartScreen::DeselectObject()
 {
 	auto obj = m_Objects[m_objectIndex];
 	auto textComp = obj->GetComponent<TextComponent>();
@@ -166,7 +166,7 @@ void dae::StartScreen::DeselectObject()
 	}
 }
 
-void dae::StartScreen::SelectObject()
+void imp::StartScreen::SelectObject()
 {
 	auto obj = m_Objects[m_objectIndex];
 	auto textComp = obj->GetComponent<TextComponent>();

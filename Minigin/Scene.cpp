@@ -7,10 +7,10 @@
 #include "TextComponent.h"
 #include "TextureComponent.h"
 
-unsigned int dae::Scene::idCounter = 0;
+unsigned int imp::Scene::idCounter = 0;
 
 
-dae::Scene::Scene(const std::string& name)
+imp::Scene::Scene(const std::string& name)
 	: m_Name(name)
 	, m_pSceneRenderer(std::make_shared<SceneRenderer>())
 { 
@@ -18,7 +18,7 @@ dae::Scene::Scene(const std::string& name)
 	++idCounter;
 }
 
-dae::Scene::~Scene()
+imp::Scene::~Scene()
 {
 	for (const auto& o : m_Objects)
 	{
@@ -26,7 +26,7 @@ dae::Scene::~Scene()
 	}
 }
 
-void dae::Scene::AddGameObject(const std::shared_ptr<GameObject>& object)
+void imp::Scene::AddGameObject(const std::shared_ptr<GameObject>& object)
 {
 	if (std::find(m_Objects.begin(), m_Objects.end(), object) == m_Objects.end())
 	{
@@ -37,7 +37,7 @@ void dae::Scene::AddGameObject(const std::shared_ptr<GameObject>& object)
 	//TODO Log if object already exists
 }
 
-void dae::Scene::RootUpdate()
+void imp::Scene::RootUpdate()
 {
 	Update();
 
@@ -47,12 +47,12 @@ void dae::Scene::RootUpdate()
 	}
 }
 
-void dae::Scene::RootRender() const
+void imp::Scene::RootRender() const
 {
 	m_pSceneRenderer->Render();
 }
 
-void dae::Scene::RootInitialize()
+void imp::Scene::RootInitialize()
 {
 	Initialize();
 }

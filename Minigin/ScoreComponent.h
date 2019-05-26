@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
-namespace dae
+namespace imp
 {
 	class ScoreComponent final :	public BaseComponent
 	{

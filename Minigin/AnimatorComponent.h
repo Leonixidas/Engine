@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 
-namespace dae
+namespace imp
 {
 	//TODO make a system that uses conditions to switch animations
 	//Ref Gameplay Programming && UNITY

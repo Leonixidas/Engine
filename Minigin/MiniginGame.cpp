@@ -13,7 +13,7 @@
 #include "GameTime.h"
 
 
-void dae::MiniginGame::Initialize()
+void imp::MiniginGame::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
 	{
@@ -39,12 +39,12 @@ void dae::MiniginGame::Initialize()
 /**
  * Code constructing the scene world starts here
  */
-void dae::MiniginGame::LoadGame() const
+void imp::MiniginGame::LoadGame() const
 {
 	SceneManager::GetInstance().RootInitialize();
 }
 
-void dae::MiniginGame::Cleanup()
+void imp::MiniginGame::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
@@ -52,7 +52,7 @@ void dae::MiniginGame::Cleanup()
 	SDL_Quit();
 }
 
-void dae::MiniginGame::Run()
+void imp::MiniginGame::Run()
 {
 	Initialize();
 
@@ -91,13 +91,13 @@ void dae::MiniginGame::Run()
 	Cleanup();
 }
 
-void dae::MiniginGame::SetWindowDimensions(float width, float height)
+void imp::MiniginGame::SetWindowDimensions(float width, float height)
 {
 	m_WindowWidth = width;
 	m_WindowHeight = height;
 }
 
-void dae::MiniginGame::SetGameName(const std::string & name)
+void imp::MiniginGame::SetGameName(const std::string & name)
 {
 	m_Name = std::move(name);
 }

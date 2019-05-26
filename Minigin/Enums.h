@@ -1,7 +1,7 @@
 #pragma once
 #include <XInput.h>
 
-namespace dae
+namespace imp
 {
 	enum class ControllerButton
 	{
@@ -24,12 +24,5 @@ namespace dae
 		INITIALIZING,
 		LOOPING,
 		EXITING
-	};
-
-	enum class GameModes
-	{
-		SINGLEPLAYER,
-		MULTIPLAYER_COOP,
-		MULTIPLAYER_VERSUS
 	};
 }

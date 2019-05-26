@@ -7,7 +7,7 @@
 #include "Transform.h"
 
 
-dae::TextureComponent::TextureComponent(const std::shared_ptr<GameObject>& owner)
+imp::TextureComponent::TextureComponent(const std::shared_ptr<GameObject>& owner)
 	: BaseComponent(owner)
 	, m_TextureDimensions()
 	, m_SourceRect()
@@ -15,7 +15,7 @@ dae::TextureComponent::TextureComponent(const std::shared_ptr<GameObject>& owner
 {
 }
 
-void dae::TextureComponent::SetTexture(const std::string & assetFile)
+void imp::TextureComponent::SetTexture(const std::string & assetFile)
 {
 	m_pTexture = std::move(ResourceManager::GetInstance().LoadTexture(assetFile));
 	int w{}, h{};
@@ -31,12 +31,12 @@ void dae::TextureComponent::SetTexture(const std::string & assetFile)
 	m_DestRect.h = h;
 }
 
-void dae::TextureComponent::SetTexture(const std::shared_ptr<Texture2D>& texture)
+void imp::TextureComponent::SetTexture(const std::shared_ptr<Texture2D>& texture)
 {
 	m_pTexture = texture;
 }
 
-void dae::TextureComponent::SetTextureWidthAndHeight(const float & width, const float & height)
+void imp::TextureComponent::SetTextureWidthAndHeight(const float & width, const float & height)
 {
 	m_TextureDimensions.x = width;
 	m_TextureDimensions.y = height;
@@ -46,7 +46,7 @@ void dae::TextureComponent::SetTextureWidthAndHeight(const float & width, const 
 	m_DestRect.h = int(height);
 }
 
-void dae::TextureComponent::SetSourceRect(const glm::vec2& pos, const float& width, const float& height)
+void imp::TextureComponent::SetSourceRect(const glm::vec2& pos, const float& width, const float& height)
 {
 	m_SourceRect.x = int(pos.x);
 	m_SourceRect.y = int(pos.y);
@@ -54,7 +54,7 @@ void dae::TextureComponent::SetSourceRect(const glm::vec2& pos, const float& wid
 	m_SourceRect.h = int(height);
 }
 
-void dae::TextureComponent::SetDestRect(const glm::vec2& pos, const float& width, const float& height)
+void imp::TextureComponent::SetDestRect(const glm::vec2& pos, const float& width, const float& height)
 {
 	m_DestRect.x = int(pos.x);
 	m_DestRect.y = int(pos.y);

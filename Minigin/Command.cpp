@@ -4,11 +4,11 @@
 #include "Transform.h"
 #include "GameTime.h"
 
-void dae::ShootCommand::Execute(std::shared_ptr<GameObject>&)
+void imp::ShootCommand::Execute(std::shared_ptr<GameObject>&)
 {
 }
 
-void dae::MoveLeftCommand::Execute(std::shared_ptr<GameObject>& affected)
+void imp::MoveLeftCommand::Execute(std::shared_ptr<GameObject>& affected)
 {
 	Transform& t = affected->GetTransform();
 	glm::vec3 pos = t.GetPosition();
@@ -16,7 +16,7 @@ void dae::MoveLeftCommand::Execute(std::shared_ptr<GameObject>& affected)
 	t.SetPosition(pos);
 }
 
-void dae::MoveRightCommand::Execute(std::shared_ptr<GameObject>& affected)
+void imp::MoveRightCommand::Execute(std::shared_ptr<GameObject>& affected)
 {
 	Transform& t = affected->GetTransform();
 	glm::vec3 pos = t.GetPosition();
@@ -24,7 +24,7 @@ void dae::MoveRightCommand::Execute(std::shared_ptr<GameObject>& affected)
 	t.SetPosition(pos);
 }
 
-void dae::MoveUpCommand::Execute(std::shared_ptr<GameObject>& affected)
+void imp::MoveUpCommand::Execute(std::shared_ptr<GameObject>& affected)
 {
 	Transform& t = affected->GetTransform();
 	glm::vec3 pos = t.GetPosition();
@@ -32,7 +32,7 @@ void dae::MoveUpCommand::Execute(std::shared_ptr<GameObject>& affected)
 	t.SetPosition(pos);
 }
 
-void dae::MoveDownCommand::Execute(std::shared_ptr<GameObject>& affected)
+void imp::MoveDownCommand::Execute(std::shared_ptr<GameObject>& affected)
 {
 	Transform& t = affected->GetTransform();
 	glm::vec3 pos = t.GetPosition();
@@ -40,11 +40,11 @@ void dae::MoveDownCommand::Execute(std::shared_ptr<GameObject>& affected)
 	t.SetPosition(pos);
 }
 
-void dae::PumpCommand::Execute(std::shared_ptr<GameObject>&)
+void imp::PumpCommand::Execute(std::shared_ptr<GameObject>&)
 {
 }
 
-void dae::QuitCommand::Execute()
+void imp::QuitCommand::Execute()
 {
 	
 }

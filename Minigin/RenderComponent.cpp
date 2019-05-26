@@ -6,12 +6,12 @@
 #include "Renderer.h"
 
 
-dae::RenderComponent::RenderComponent(const std::shared_ptr<GameObject>& owner)
+imp::RenderComponent::RenderComponent(const std::shared_ptr<GameObject>& owner)
 	: BaseComponent(owner)
 {
 }
 
-void dae::RenderComponent::Render() const
+void imp::RenderComponent::Render() const
 {
 	TextureComponent *texComp = m_pGameObject->GetComponent<TextureComponent>();
 	if (texComp == nullptr) return;

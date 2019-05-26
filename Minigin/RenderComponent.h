@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
-namespace dae
+namespace imp
 {
 	class GameObject;
 	class Renderer;

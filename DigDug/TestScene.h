@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-namespace dae
+namespace imp
 {
 	class TestScene final : public Scene
 	{

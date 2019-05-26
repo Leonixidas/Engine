@@ -1,21 +1,20 @@
 #pragma once
-#include "InputComponent.h"
+#include "InputDevice.h"
 #include "Structs.h"
 
-namespace dae
+namespace imp
 {
-	class Command;
 	class GameObject;
 
-	class ControllerInputComponent final : public InputComponent
+	class ControllerInputDevice final : public InputDevice
 	{
 	public:
-		ControllerInputComponent(const std::shared_ptr<GameObject>& owner);
-		~ControllerInputComponent();
+		ControllerInputDevice();
+		~ControllerInputDevice();
 
 		void AddInputAction(const ControllerInputAction& action);
-		virtual void Update() override;
 		unsigned int GetControllerID() { return m_ControllerID; }
+		virtual void OnNotify(WORD controllerButton) override;
 		
 	private:
 		static unsigned int m_ControllerCounter;

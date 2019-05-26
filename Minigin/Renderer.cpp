@@ -5,7 +5,7 @@
 #include "Texture2D.h"
 #include "SDL_rect.h"
 
-void dae::Renderer::Init(SDL_Window * window)
+void imp::Renderer::Init(SDL_Window * window)
 {
 	m_Renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (m_Renderer == nullptr) 
@@ -14,7 +14,7 @@ void dae::Renderer::Init(SDL_Window * window)
 	}
 }
 
-void dae::Renderer::Render()
+void imp::Renderer::Render()
 {
 	SDL_RenderClear(m_Renderer);
 
@@ -23,7 +23,7 @@ void dae::Renderer::Render()
 	SDL_RenderPresent(m_Renderer);
 }
 
-void dae::Renderer::Destroy()
+void imp::Renderer::Destroy()
 {
 	if (m_Renderer != nullptr)
 	{
@@ -32,7 +32,7 @@ void dae::Renderer::Destroy()
 	}
 }
 
-void dae::Renderer::RenderTexture(const Texture2D & texture, const SDL_Rect & sourceRect, const SDL_Rect & destRect) const
+void imp::Renderer::RenderTexture(const Texture2D & texture, const SDL_Rect & sourceRect, const SDL_Rect & destRect) const
 {
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &sourceRect, &destRect);
 }

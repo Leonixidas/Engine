@@ -2,7 +2,7 @@
 #include "BaseComponent.h"
 struct SDL_Color;
 
-namespace dae
+namespace imp
 {
 	class Font;
 	class Texture2D;

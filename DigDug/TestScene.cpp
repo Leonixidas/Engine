@@ -11,12 +11,12 @@
 #include "KeyboardInputComponent.h"
 #include "ControllerInputComponent.h"
 
-dae::TestScene::TestScene()
+imp::TestScene::TestScene()
 	: Scene(std::move("TestScene"))
 {
 }
 
-void dae::TestScene::Initialize()
+void imp::TestScene::Initialize()
 {
 	auto obj = std::make_shared<GameObject>();
 	TextureComponent* texComp = new TextureComponent(obj);
@@ -33,7 +33,7 @@ void dae::TestScene::Initialize()
 	glm::vec2 texDim = texComp->GetTextureSizes();
 	obj->AddComponent(texComp);
 	obj->GetTransform().SetPosition( 640.f / 2 - texDim.x / 2, 480.f / 2 - texDim.y / 2 ,0 );
-	ControllerInputComponent* input = new ControllerInputComponent(obj);
+	ControllerInputDevice* input = new ControllerInputDevice(obj);
 	input->AddInputAction({ std::make_shared<MoveRightCommand>(),ControllerButton::ArrowRight });
 	obj->AddComponent(input);
 	m_Logo = obj;
@@ -56,7 +56,7 @@ void dae::TestScene::Initialize()
 	
 }
 
-void dae::TestScene::Update()
+void imp::TestScene::Update()
 {
 	float elapsedSec = GameTime::GetInstance().GetElapsedSec();
 	TextComponent *text = m_FPSText->GetComponent<TextComponent>();
@@ -64,6 +64,6 @@ void dae::TestScene::Update()
 		m_FPSText->GetComponent<TextComponent>()->SetText(std::move(std::to_string(int(1.f / elapsedSec))));
 }
 
-void dae::TestScene::Render() const
+void imp::TestScene::Render() const
 {
 }

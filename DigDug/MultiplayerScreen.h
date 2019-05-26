@@ -1,7 +1,7 @@
 #pragma once
 #include <Scene.h>
 
-namespace dae
+namespace imp
 {
 	class MultiplayerScreen :
 		public Scene

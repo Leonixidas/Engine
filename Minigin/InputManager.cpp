@@ -4,7 +4,7 @@
 #include <SDL.h>
 
 
-bool dae::InputManager::ProcessInput()
+bool imp::InputManager::ProcessInput()
 {
 	m_KeyPresses.clear();
 
@@ -35,7 +35,7 @@ bool dae::InputManager::ProcessInput()
 	return true;
 }
 
-bool dae::InputManager::IsPressed(ControllerButton button, unsigned int controllerID) const
+bool imp::InputManager::IsPressed(ControllerButton button, unsigned int controllerID) const
 {
 	if(!m_InputStates.empty())
 		return (m_InputStates[controllerID].Gamepad.wButtons & int(button)) != 0;
@@ -43,7 +43,7 @@ bool dae::InputManager::IsPressed(ControllerButton button, unsigned int controll
 	return false;
 }
 
-bool dae::InputManager::IsPressed(SDL_Keycode keycode) const
+bool imp::InputManager::IsPressed(SDL_Keycode keycode) const
 {
 	return std::find(m_KeyPresses.begin(), m_KeyPresses.end(), keycode) != m_KeyPresses.end();
 }

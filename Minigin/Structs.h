@@ -3,7 +3,7 @@
 #include "Enums.h"
 #include "Command.h"
 
-namespace dae
+namespace imp
 {
 
 	struct KeyBoardInputAction

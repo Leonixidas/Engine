@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dae
+namespace imp
 {
 	class GameObject;
 	class SceneRenderer;

@@ -5,7 +5,7 @@ struct SDL_Window;
 struct SDL_Renderer;
 struct SDL_Rect;
 
-namespace dae
+namespace imp
 {
 	class Texture2D;
 	class Renderer final : public Singleton<Renderer>

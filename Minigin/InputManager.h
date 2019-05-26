@@ -3,7 +3,7 @@
 #include "Singleton.h"
 #include "Structs.h"
 
-namespace dae
+namespace imp
 {
 	class GameObject;
 	class Command;

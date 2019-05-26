@@ -1,7 +1,7 @@
 #pragma once
 #include <streambuf>
 
-namespace dae
+namespace imp
 {
 	class DebugStreambuf : public std::streambuf 
 	{

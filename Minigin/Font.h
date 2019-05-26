@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL_ttf.h>
 
-namespace dae
+namespace imp
 {
 	class Font
 	{

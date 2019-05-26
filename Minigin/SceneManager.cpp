@@ -5,19 +5,19 @@
 #include <algorithm>
 
 
-void dae::SceneManager::Update()
+void imp::SceneManager::Update()
 {
 	if (m_ActiveScene != nullptr)
 		m_ActiveScene->RootUpdate();
 }
 
-void dae::SceneManager::Render()
+void imp::SceneManager::Render()
 {
 	if(m_ActiveScene != nullptr)
 		m_ActiveScene->RootRender(); // only the active scene needs to render
 }
 
-void dae::SceneManager::RootInitialize()
+void imp::SceneManager::RootInitialize()
 {
 	for (auto scene : m_Scenes)
 	{
@@ -25,7 +25,7 @@ void dae::SceneManager::RootInitialize()
 	}
 }
 
-void dae::SceneManager::SetActiveScene(const unsigned int id)
+void imp::SceneManager::SetActiveScene(const unsigned int id)
 {
 	if (id < m_Scenes.size())
 	{
@@ -34,7 +34,7 @@ void dae::SceneManager::SetActiveScene(const unsigned int id)
 	}
 }
 
-void dae::SceneManager::SetActiveScene(const std::string & name)
+void imp::SceneManager::SetActiveScene(const std::string & name)
 {
 	auto it = std::find_if(m_Scenes.begin(), m_Scenes.end(), [name](std::shared_ptr<Scene> scene) { return name.compare(scene->GetSceneName()) == 0; });
 
@@ -42,19 +42,19 @@ void dae::SceneManager::SetActiveScene(const std::string & name)
 		SetActiveScene((*it)->GetID());
 }
 
-void dae::SceneManager::GoToPreviousScene()
+void imp::SceneManager::GoToPreviousScene()
 {
 	auto temp = m_PreviousScene;
 	m_PreviousScene = m_ActiveScene;
 	m_ActiveScene = temp;
 }
 
-dae::Scene& dae::SceneManager::GetActiveScene()
+imp::Scene& imp::SceneManager::GetActiveScene()
 {
 	return *m_ActiveScene;
 }
 
-void dae::SceneManager::AddScene(const std::shared_ptr<Scene>& scene)
+void imp::SceneManager::AddScene(const std::shared_ptr<Scene>& scene)
 {
 	m_Scenes.push_back(scene);
 }

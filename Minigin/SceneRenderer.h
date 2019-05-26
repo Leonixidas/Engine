@@ -1,7 +1,7 @@
 #pragma once
 #include "RenderComponent.h"
 
-namespace dae
+namespace imp
 {
 	class SceneRenderer final
 	{

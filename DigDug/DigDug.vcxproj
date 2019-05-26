@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DigDugEnums.h" />
     <ClInclude Include="MultiplayerScreen.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StartScreen.h" />

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dae
+namespace imp
 {
 	class BaseComponent;
 	class Transform;
@@ -43,7 +43,7 @@ namespace dae
 }
 
 template <class T>
-T* dae::GameObject::GetComponent()
+T* imp::GameObject::GetComponent()
 {
 	for (auto component : m_Components)
 	{
@@ -57,7 +57,7 @@ T* dae::GameObject::GetComponent()
 }
 
 template <class T>
-bool dae::GameObject::HasComponent()
+bool imp::GameObject::HasComponent()
 {
 	for (auto c : m_Components)
 	{

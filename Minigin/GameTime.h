@@ -3,7 +3,7 @@
 #include "MiniginGame.h"
 #include <chrono>
 
-namespace dae
+namespace imp
 {
 	class GameTime final : public Singleton<GameTime>
 	{

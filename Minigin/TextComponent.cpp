@@ -11,12 +11,12 @@
 #include "Font.h"
 
 
-dae::TextComponent::TextComponent(const std::shared_ptr<GameObject>& owner)
+imp::TextComponent::TextComponent(const std::shared_ptr<GameObject>& owner)
 	: TextComponent(owner, std::move(SDL_Color{ 255,255,255 }), std::move("Text"), std::move("Lingua.otf"))
 {
 }
 
-dae::TextComponent::TextComponent(const std::shared_ptr<GameObject>& owner, 
+imp::TextComponent::TextComponent(const std::shared_ptr<GameObject>& owner, 
 								  const SDL_Color & color, const std::string & text, 
 								  const std::string & fontFilePath, 
 								  const int & size)
@@ -30,33 +30,33 @@ dae::TextComponent::TextComponent(const std::shared_ptr<GameObject>& owner,
 	CreateTextureFromFont();
 }
 
-void dae::TextComponent::SetColor(const SDL_Color & color)
+void imp::TextComponent::SetColor(const SDL_Color & color)
 {
 	m_spColor = std::make_shared<SDL_Color>(color);
 	CreateTextureFromFont();
 }
 
-void dae::TextComponent::SetText(const std::string & text)
+void imp::TextComponent::SetText(const std::string & text)
 {
 	m_Text = std::move(text);
 	CreateTextureFromFont();
 }
 
-void dae::TextComponent::SetFont(const std::string & filePath)
+void imp::TextComponent::SetFont(const std::string & filePath)
 {
 	m_FilePath = std::move(filePath);
 	m_spFont = ResourceManager::GetInstance().LoadFont(filePath, m_FontSize);
 	CreateTextureFromFont();
 }
 
-void dae::TextComponent::SetSize(int size)
+void imp::TextComponent::SetSize(int size)
 {
 	m_FontSize = size;
 	m_spFont = ResourceManager::GetInstance().LoadFont(m_FilePath, m_FontSize);
 	CreateTextureFromFont();
 }
 
-void dae::TextComponent::CreateTextureFromFont()
+void imp::TextComponent::CreateTextureFromFont()
 {
 	TextureComponent *texComp = m_pGameObject->GetComponent<TextureComponent>();
 

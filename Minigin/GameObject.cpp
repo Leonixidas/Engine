@@ -4,12 +4,12 @@
 #include "Transform.h"
 
 
-dae::GameObject::GameObject()
+imp::GameObject::GameObject()
 	: m_Transform(std::make_shared<Transform>())
 {
 }
 
-dae::GameObject::~GameObject()
+imp::GameObject::~GameObject()
 {
 	for (auto c : m_Components)
 	{
@@ -18,7 +18,7 @@ dae::GameObject::~GameObject()
 	}
 }
 
-void dae::GameObject::Update()
+void imp::GameObject::Update()
 {
 	for (auto c : m_Components)
 	{
@@ -31,7 +31,7 @@ void dae::GameObject::Update()
 	}
 }
 
-void dae::GameObject::AddComponent(BaseComponent* component)
+void imp::GameObject::AddComponent(BaseComponent* component)
 {
 	for (auto c : m_Components)
 	{
@@ -42,14 +42,14 @@ void dae::GameObject::AddComponent(BaseComponent* component)
 	m_Components.push_back(component);
 }
 
-void dae::GameObject::AddChild(const std::shared_ptr<GameObject>& child)
+void imp::GameObject::AddChild(const std::shared_ptr<GameObject>& child)
 {
 	if(std::find(m_Children.begin(), m_Children.end(), child) == m_Children.end())
 		m_Children.push_back(child);
 	//TODO send a message to the logger
 }
 
-void dae::GameObject::DeleteChild(const std::shared_ptr<GameObject>& child)
+void imp::GameObject::DeleteChild(const std::shared_ptr<GameObject>& child)
 {
 	auto found = std::find(m_Children.begin(), m_Children.end(), child);
 	if (found != m_Children.end())

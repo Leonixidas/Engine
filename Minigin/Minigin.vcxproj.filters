@@ -117,17 +117,20 @@
     <ClInclude Include="Structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardInputComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ControllerInputComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="ScoreComponent.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDevice.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerInputDevice.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInputDevice.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -194,20 +197,20 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="ControllerInputComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyboardInputComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Command.cpp">
       <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerInputDevice.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardInputDevice.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

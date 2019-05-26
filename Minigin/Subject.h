@@ -1,18 +1,21 @@
 #pragma once
-namespace dae
+#include <SDL_keycode.h>
+
+namespace imp
 {
 	class Observer;
 
 	class Subject
 	{
 	public:
-		Subject();
-		~Subject();
+		Subject() = default;
+		~Subject() = default;
 		void AddObserver(std::shared_ptr<Observer>& observer);
 		void RemoveObserver(std::shared_ptr<Observer>& observer);
-		void Notify(/*event*/);
+		void Notify(WORD controllerButton);
+		void Notify(SDL_Keycode keyboardButton);
 	private:
-		std::vector<Observer> m_Observers;
+		std::vector<std::shared_ptr<Observer>> m_Observers;
 	};
 }
 

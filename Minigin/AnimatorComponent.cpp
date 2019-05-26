@@ -6,7 +6,7 @@
 #include "GameTime.h"
 
 
-dae::AnimatorComponent::AnimatorComponent(const std::shared_ptr<GameObject>& owner)
+imp::AnimatorComponent::AnimatorComponent(const std::shared_ptr<GameObject>& owner)
 	: BaseComponent(owner)
 	, m_AnimationSpeed(0.1f)
 	, m_AnimationTimer()
@@ -20,7 +20,7 @@ dae::AnimatorComponent::AnimatorComponent(const std::shared_ptr<GameObject>& own
 {
 }
 
-void dae::AnimatorComponent::Update()
+void imp::AnimatorComponent::Update()
 {
 	m_AnimationTimer += GameTime::GetInstance().GetElapsedSec();
 	
@@ -31,7 +31,7 @@ void dae::AnimatorComponent::Update()
 	}
 }
 
-void dae::AnimatorComponent::SetSpriteGrid(int rows, int colums)
+void imp::AnimatorComponent::SetSpriteGrid(int rows, int colums)
 {
 	m_Rows = rows;
 	m_Colums = colums;
@@ -43,17 +43,17 @@ void dae::AnimatorComponent::SetSpriteGrid(int rows, int colums)
 	m_ClipHeight = texDim.y / m_Rows;
 }
 
-void dae::AnimatorComponent::SetAnimationSpeed(float animationSpeed)
+void imp::AnimatorComponent::SetAnimationSpeed(float animationSpeed)
 {
 	m_AnimationSpeed = animationSpeed;
 }
 
-void dae::AnimatorComponent::SetAnimationNumber(int animationNumber)
+void imp::AnimatorComponent::SetAnimationNumber(int animationNumber)
 {
 	m_AnimationNumber = animationNumber;
 }
 
-void dae::AnimatorComponent::HandleAnimation()
+void imp::AnimatorComponent::HandleAnimation()
 {
 	TextureComponent *texComp = m_pGameObject->GetComponent<TextureComponent>();
 	if (texComp == nullptr) return;
