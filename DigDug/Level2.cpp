@@ -135,7 +135,7 @@ void imp::Level2::LoadLevel()
 		}
 		else if (inputString.find("FreeSpace") != std::string::npos)
 		{
-			size_t first{}, second{};
+			size_t first{};
 			std::vector<size_t> freeSpaces{};
 
 			pos = inputString.find_first_of('>');
@@ -240,11 +240,11 @@ void imp::Level2::CreatePlayer(size_t colum, size_t row)
 		animComp->AddAnimationClip(std::shared_ptr<AnimationClip>(new AnimationClip{ s,d,f,texSize,frameT,animS,texP }));
 	}
 
-	auto controller = playerComp->GetControllerInput();
-	controller->AddInputAction({ std::shared_ptr<MoveRightCommand>(new MoveRightCommand()),ControllerButton::ArrowRight, player });
-	controller->AddInputAction({ std::shared_ptr<MoveLeftCommand>(new MoveLeftCommand()),ControllerButton::ArrowLeft, player });
-	controller->AddInputAction({ std::shared_ptr<MoveDownCommand>(new MoveDownCommand()),ControllerButton::ArrowDown, player });
-	controller->AddInputAction({ std::shared_ptr<MoveUpCommand>(new MoveUpCommand()),ControllerButton::ArrowUp, player });
+	auto controller = playerComp->GetKeyboardInput();
+	controller->AddInputAction({ std::shared_ptr<MoveRightCommand>(new MoveRightCommand()),SDLK_d, player });
+	controller->AddInputAction({ std::shared_ptr<MoveLeftCommand>(new MoveLeftCommand()),SDLK_a, player });
+	controller->AddInputAction({ std::shared_ptr<MoveDownCommand>(new MoveDownCommand()),SDLK_s, player });
+	controller->AddInputAction({ std::shared_ptr<MoveUpCommand>(new MoveUpCommand()),SDLK_w, player });
 
 
 	player->AddComponent(texComp);
@@ -256,11 +256,11 @@ void imp::Level2::CreatePlayer(size_t colum, size_t row)
 	input.close();
 }
 
-void imp::Level2::CreatePooka(size_t colum, size_t row)
+void imp::Level2::CreatePooka(size_t , size_t )
 {
 }
 
-void imp::Level2::CreateFygar(size_t colum, size_t row)
+void imp::Level2::CreateFygar(size_t , size_t )
 {
 }
 
@@ -273,7 +273,7 @@ void imp::Level2::CreateGrid(size_t colum, size_t row, size_t w, size_t h, const
 			auto tile = std::shared_ptr<GameObject>(new GameObject());
 			auto texComp = new TextureComponent(tile);
 			texComp->SetTexture(std::move("default_dirt.png"));
-			tile->GetTransform().SetPosition(32.f * (i % colum), 640.f - 596.f + 32.f * (i / colum), 0.f);
+			tile->GetTransform().SetPosition(float(w) * (i % colum), 640.f - 596.f + float(h) * (i / colum), 0.f);
 			tile->AddComponent(std::move(texComp));
 			AddGameObject(tile);
 		}
