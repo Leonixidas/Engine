@@ -1,11 +1,15 @@
 #include "MiniginPCH.h"
 #include "PlayerComponent.h"
+#include "ControllerInputDevice.h"
+#include "KeyboardInputDevice.h"
 
 
 unsigned int imp::PlayerComponent::m_PlayerCount = 0;
 
 imp::PlayerComponent::PlayerComponent(const std::shared_ptr<GameObject>& owner)
 	: BaseComponent(owner)
+	, m_ControllerDevice(std::shared_ptr<ControllerInputDevice>(new ControllerInputDevice()))
+	, m_KeyBoardDevice(std::shared_ptr<KeyboardInputDevice>(new KeyboardInputDevice()))
 	, m_PlayerState(PlayerState::IDLE)
 	, m_PlayerDirection(Direction::FACE_RIGHT)
 	, m_PreviousPlayerState(PlayerState::IDLE)
@@ -17,6 +21,8 @@ imp::PlayerComponent::PlayerComponent(const std::shared_ptr<GameObject>& owner)
 
 void imp::PlayerComponent::Update()
 {
+	m_ControllerDevice->Update();
+	m_KeyBoardDevice->Update();
 }
 
 void imp::PlayerComponent::SetPlayerState(PlayerState playerState)

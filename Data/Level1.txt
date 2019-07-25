@@ -1,0 +1,8 @@
+<Grid>15,18,32,32</Grid>
+<FreeSpace>37,52,67,93,94,95,96,97,98,99,100,101,153,154,155,156,157,158,159,160,161,217,232,247</FreeSpace>
+<Player1>7,2</Player1>
+<Player2>7,16</Player2>
+<Fygar1>3,6</Fygar1>
+<Fygar2>11,6</Fygar2>
+<Pooka1>3,10</Pooka1>
+<Pooka2>11,10</Pooka2>
