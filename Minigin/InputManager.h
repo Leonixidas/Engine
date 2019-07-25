@@ -2,7 +2,6 @@
 #include <SDL_keycode.h>
 #include "Singleton.h"
 #include "Structs.h"
-#include "KeyboardInputDevice.h"
 
 namespace imp
 {

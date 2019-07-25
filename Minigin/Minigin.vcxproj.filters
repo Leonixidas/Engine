@@ -106,20 +106,17 @@
     <ClInclude Include="PlayerComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardInputDevice.h">
-      <Filter>Diagnostics</Filter>
-    </ClInclude>
-    <ClInclude Include="InputDevice.h">
-      <Filter>Diagnostics</Filter>
-    </ClInclude>
-    <ClInclude Include="ControllerInputDevice.h">
-      <Filter>Diagnostics</Filter>
-    </ClInclude>
     <ClInclude Include="Structs.h">
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="Enums.h">
       <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerInputComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInputComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -195,11 +192,11 @@
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardInputDevice.cpp">
-      <Filter>Diagnostics</Filter>
+    <ClCompile Include="ControllerInputComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="ControllerInputDevice.cpp">
-      <Filter>Diagnostics</Filter>
+    <ClCompile Include="KeyboardInputComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

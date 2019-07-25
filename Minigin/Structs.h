@@ -6,9 +6,9 @@
 namespace imp
 {
 
-	struct KeyBoardInputAction
+	struct KeyboardInputAction
 	{
-		KeyBoardInputAction(const std::shared_ptr<Command>& command, SDL_Keycode inputKey, const std::shared_ptr<GameObject>& object)
+		KeyboardInputAction(const std::shared_ptr<Command>& command, SDL_Keycode inputKey, const std::shared_ptr<GameObject>& object)
 			: m_Command(command)
 			, m_GameObject(object)
 			, m_TriggerButton(inputKey)
@@ -16,7 +16,7 @@ namespace imp
 		{
 		}
 
-		SDL_Keycode GetTriggerButton() { return m_TriggerButton; }
+		const SDL_Keycode& GetTriggerButton() const { return m_TriggerButton; }
 		std::shared_ptr<Command>& GetCommand() { return m_Command; }
 		std::shared_ptr<GameObject>& GetGameObject() { return m_GameObject; }
 		unsigned int GetID() { return m_ID; }
@@ -39,7 +39,7 @@ namespace imp
 		{
 		}
 
-		ControllerButton GetTriggerButton() { return m_TriggerButton; }
+		const ControllerButton& GetTriggerButton() const { return m_TriggerButton; }
 		std::shared_ptr<Command>& GetCommand() { return m_Command; }
 		std::shared_ptr<GameObject>& GetGameObject() { return m_GameObject; }
 		unsigned int GetID() { return m_ID; }
